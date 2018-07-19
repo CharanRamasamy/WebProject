@@ -58,6 +58,8 @@ public class Customerregister extends HttpServlet {
 		String un = request.getParameter("username");
 		String pwd = request.getParameter("password");
 		String addr = request.getParameter("address");
+		String ph = request.getParameter("phone");
+		String pc = request.getParameter("code");
 		
 		
 	
@@ -66,7 +68,7 @@ public class Customerregister extends HttpServlet {
          
         try {
             
-            conn = dbConnection.setConnection();
+            conn = dbConnection.getConnection();
  
             // constructs SQL statement
             
@@ -79,7 +81,7 @@ public class Customerregister extends HttpServlet {
 			stmt.execute(stp.insertCustomer);
 			//Calling the Procedure
 
-			calstat = (CallableStatement) conn.prepareCall("{call RegisterCustomer(?,?,?,?,?,?)}");
+			calstat = (CallableStatement) conn.prepareCall("{call RegisterCustomer(?,?,?,?,?,?,?,?)}");
 			
 			
 			calstat.setString(1,fn);
@@ -88,6 +90,8 @@ public class Customerregister extends HttpServlet {
 			calstat.setString(4,un);
 			calstat.setString(5,pwd);
 			calstat.setString(6,addr);
+			calstat.setString(7,pc);
+			calstat.setString(8, pc);
 			
 			
 			calstat.execute();
@@ -105,16 +109,14 @@ public class Customerregister extends HttpServlet {
 
             // forwards to the message page
             getServletContext().getRequestDispatcher("/message.jsp").forward(request, response);
-        }
-        catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+        } 
         finally {
             if (conn != null) {
                 // closes the database connection
                 try {
                     conn.close();
+                    calstat.close();
+                    dbConnection.CloseSSHConnection();
                 } 
                 catch (SQLException ex) {
                     ex.printStackTrace();

@@ -8,13 +8,15 @@ public class StoredProcedures {
 			+ "("
 			+ "IN fn varchar(70),"
 			+ "IN ln varchar(70),"
-			+ "IN em varchar(70), "
+			+ "IN em varchar(45), "
 			+ "IN un varchar(45),"
-			+ "IN pwd varchar(20),"
-			+ "IN addr varchar(150)) "			
+			+ "IN pd varchar(16),"
+			+ "IN adr varchar(150), "	
+			+ "IN pc varchar(6), "
+			+ "IN ph varchar(12)) "
 			+ "BEGIN "
-			+ "insert into Customer (firstname,lastname,email_id,usename,pass_word,Address) "
-			+ "values (fn,ln,em,un,pwd,addr); "
+			+ "insert into Customer (firstname,lastname,emailid,username,pwd,addr,postalcode,phnumber) "
+			+ "values (fn,ln,em,un,pd,adr,pc,ph); "
 			+ "END;";
 
 }
