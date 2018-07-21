@@ -90,11 +90,11 @@
 	  <div class="card mb-5">
             <h5 class="card-header">Login</h5>
             <div class="card-body">
-			<form name="sentMessage" id="loginForm" novalidate>
+			<form name="sentMessage" id="loginForm" novalidate method="post" action="checklogin">
 			 <div class="control-group form-group">
               <div class="controls">
                 <label>Username:</label>
-                <input type="text" class="form-control" placeholder="Username" id="lusername" required data-validation-required-message="Please enter your Username.">
+                <input type="text" class="form-control" placeholder="Username" name="lusername" id="lusername" required data-validation-required-message="Please enter your Username.">
                 <p class="help-block"></p>
               </div>
             </div>
@@ -102,7 +102,7 @@
 			<div class="control-group form-group">
               <div class="controls">
                 <label>Password:</label>
-                <input type="password" class="form-control" placeholder="Password" id="lpassword" required data-validation-required-message="Please enter your Password.">
+                <input type="password" class="form-control" placeholder="Password" name="lpassword" id="lpassword" required data-validation-required-message="Please enter your Password.">
                 <p class="help-block"></p>
               </div>
             </div>
@@ -110,7 +110,8 @@
 			  <span class="input-group-btn">
                  <div id="success"></div>
             <!-- For success/fail messages -->
-            <button type="submit" class="btn btn-primary" id="sendLoginButton">Login</button>
+           
+             <input type="submit"  class="btn btn-success btn-lg btn-block" value="Login">
                 </span>
 			</form>
             </div>

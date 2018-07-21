@@ -116,7 +116,7 @@ public class Customerregister extends HttpServlet {
                 try {
                     conn.close();
                     calstat.close();
-                    dbConnection.CloseSSHConnection();
+                    DBConnection.CloseSSHConnection();
                 } 
                 catch (SQLException ex) {
                     ex.printStackTrace();

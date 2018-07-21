@@ -1,3 +1,7 @@
+main/javafiles/Defects.class
 main/javafiles/utils/StoredProcedures.class
+main/javafiles/PostDefect.class
+main/javafiles/LoginCustomer.class
 main/javafiles/Customerregister.class
+main/javafiles/DefectDetails.class
 main/javafiles/utils/DBConnection.class
