@@ -33,6 +33,14 @@ public class StoredProcedures {
 			+ "select defect_name,category,details,flag_status from ServiceRequest where defect_id = did; "
 			+ "END;";
 	
+	public String dropDefectbyCategory = "DROP PROCEDURE IF EXISTS DefectbyCategory";
+	public String getDefectbyCategory = "CREATE PROCEDURE DefectbyCategory "
+			+ "("
+			+ "IN catname varchar(40))"
+			+ "BEGIN "
+			+ "select defect_name,details from ServiceRequest where category = catname; "
+			+ "END;";
+	
 	public String dropDefectidforCid = "DROP PROCEDURE IF EXISTS DefectidforCid";
 	public String getDefectidforCid = "CREATE PROCEDURE DefectidforCid "
 			+ "("
