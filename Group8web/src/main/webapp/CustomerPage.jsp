@@ -40,32 +40,7 @@
       </style>
 </head>
 <body>
-  <!-- Navigation -->
-      <nav class="navbar navbar-expand-sm  navbar-light"">
-      <a class="navbar-brand" href="#">
-          <img src="./styles/images/logo.png" alt="logo" style="width:100px;">
-      </a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-              <li>
-                  <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
-              </li>
-
-
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button type="submit">Search</button>
-          </form>
-
-
-      </div>
-      </nav>
+ <div id="header"> </div>
       
       <div class="container">
 
@@ -88,11 +63,8 @@
            <div class="mb-4">
                <h5 class=""><a class="btn btn-warning" href="confirm_technician.html">View Request</a></h5>
            </div>
-		</div>
-</div>
-		<hr/>
-		
-      <!-- Blog Post -->
+           
+             <!-- Blog Post -->
 	   <div class="card mb-4">
 	  <h5 class="card-header">Previous History</h5>
 	  <div class="table">
@@ -138,6 +110,15 @@ defectlist = d.getDefects(cid);
 </div>
        
 </div>
+           
+           
+           
+           
+		</div>
+
+		<hr/>
+		
+    
 
   
   <!-- /.container -->
@@ -155,7 +136,9 @@ defectlist = d.getDefects(cid);
     <script src="bootstrap/js/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script>
+  $("#header").load("./header.jsp");
+</script>
 
 </body>
 </html>

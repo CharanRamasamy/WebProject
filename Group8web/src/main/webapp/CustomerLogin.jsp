@@ -37,35 +37,8 @@
           }
       </style>
 </head>
-<body>
-
-         
-      <!-- Navigation -->
-      <nav class="navbar navbar-expand-sm  navbar-light"">
-      <a class="navbar-brand" href="#">
-          <img src="./styles/images/logo.png" alt="logo" style="width:100px;">
-      </a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-              <li>
-                  <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
-              </li>
-
-
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button type="submit">Search</button>
-          </form>
-
-
-      </div>
-      </nav>
+<body>  
+     <div id="header"> </div>
     <!-- Page Content -->
     <div class="container">
 
@@ -201,7 +174,9 @@
     <!-- Contact form JavaScript -->
     <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
    
-
+<script>
+  $("#header").load("./header.jsp");
+</script>
 
 </body>
 </html>

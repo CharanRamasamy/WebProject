@@ -15,38 +15,7 @@
 </head>
 <body>
 
-<header>
-    <nav class="navbar navbar-expand-sm  navbar-light">
-    <a class="navbar-brand" href="#">
-        <img src="./styles/images/logo.png" alt="logo" style="width:100px;">
-    </a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li>
-                <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li>
-                <a class="nav-link" href="customerpage.jsp">Customer <span class="sr-only">(current)</span></a>
-            </li>
-            <li>
-                <a class="nav-link" href="technicianpage.jsp">Technician <span class="sr-only">(current)</span></a>
-            </li>
-
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button type="submit">Search</button>
-        </form>
-
-
-    </div>
-    </nav>
-</header>
+<div id="header"> </div>
 
 <div id="carouselExampleIndicators" class="carousel slide container " data-ride="carousel">
     <ol class="carousel-indicators">
@@ -191,6 +160,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-
+<script>
+  $("#header").load("./header.jsp");
+</script>
 </body>
 </html>

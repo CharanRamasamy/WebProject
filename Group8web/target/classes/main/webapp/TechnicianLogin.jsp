@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div id="header"> </div>
+<script>
+  $("#header").load("./header.jsp");
+</script>
 </body>
 </html>

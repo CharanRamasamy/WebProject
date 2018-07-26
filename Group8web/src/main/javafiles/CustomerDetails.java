@@ -14,7 +14,7 @@ import main.javafiles.utils.StoredProcedures;
 
  
 
-public class DefectDetails  {
+public class CustomerDetails  {
 	
 	DBConnection dbConnection = new DBConnection();
 	Connection conn;
@@ -23,12 +23,12 @@ public class DefectDetails  {
 	StoredProcedures stp = new StoredProcedures();
 	CallableStatement calstat= null;
 	ResultSet resultSet = null;
-	ResultSet resultSet1 = null;
 	
-	public ArrayList<Defects> getDefects(int cid) throws SQLException, ClassNotFoundException
+	public Customers getCustomer(int cid) throws SQLException, ClassNotFoundException
 	
 	{
-		ArrayList<Defects> defectlist = new ArrayList<Defects>();
+		Customers customer = new Customers();
+		
 		try {
 			conn = dbConnection.getConnection();
 			
@@ -37,47 +37,34 @@ public class DefectDetails  {
 	            
 	            stmtDrop = (Statement) conn.createStatement();
 				//Dropping the existing procedure
-				stmtDrop.execute(stp.dropDefectidforCid);
+				stmtDrop.execute(stp.dropCustomerDetails);
 				stmt = (Statement) conn.createStatement();
 				//Creating New Procedure
-				stmt.execute(stp.getDefectidforCid);
+				stmt.execute(stp.getCustomerDetailsbycid);
 				//Calling the Procedure
 
-				calstat = (CallableStatement) conn.prepareCall("{call DefectidforCid(?)}");
+				calstat = (CallableStatement) conn.prepareCall("{call CustomerDetails(?)}");
 				 int customerid = cid;
 				 System.out.println("cd "+customerid);
 				
 				calstat.setInt(1, customerid);
-				int defectid =0;
+				
 				resultSet = calstat.executeQuery();
+				
+			
 			while (resultSet.next()) {
 				
-				defectid = resultSet.getInt("defect_id");
-				System.out.println("dd "+defectid);
-				stmtDrop = (Statement) conn.createStatement();
-				//Dropping the existing procedure
-				stmtDrop.execute(stp.dropDefectDetails);
-				stmt = (Statement) conn.createStatement();
-				//Creating New Procedure
-				stmt.execute(stp.getDefectDetails);
-				//Calling the Procedure
-
-				calstat = (CallableStatement) conn.prepareCall("{call DefectDetails(?)}");
+				
+				customer.setFirstName(resultSet.getString("firstname"));
+				customer.setLastName(resultSet.getString("lastname"));
+				customer.setEmail(resultSet.getString("emailid"));
+				customer.setPhone(resultSet.getString("phnumber"));
+				customer.setAddress(resultSet.getString("addr"));
 				
 				
-				calstat.setInt(1, defectid);
-				resultSet1 = calstat.executeQuery();
-			while (resultSet1.next()) {
-				
-				Defects defect = new Defects();
-				defect.setDefect_Name(resultSet1.getString("defect_name"));
-				defect.setdefect_Category(resultSet1.getString("category"));
-				defect.setdefect_Description(resultSet1.getString("details"));
-				defect.setdefect_Status(resultSet1.getString("flag_status"));
-				defectlist.add(defect);
 			}
 		        
-			}
+			
 			 
 
 		       
@@ -106,7 +93,9 @@ public class DefectDetails  {
 		  conn.close();
           calstat.close();
           dbConnection.CloseSSHConnection();
-		return defectlist;
+          
+          return customer;
+		
 		}
 
 }

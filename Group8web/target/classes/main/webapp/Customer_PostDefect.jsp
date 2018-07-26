@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="main.javafiles.CustomerDetails" %>
+<%@ page import="main.javafiles.Customers" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -10,9 +12,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <title>Customer Post Defect</title>
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
      <link rel="stylesheet" type="text/css" media="screen" href="./styles/styles.css" />
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  
     <script>
         function validateForm() {
             var name = document.forms["DetailForm"]["defectName"].value;
@@ -46,39 +53,25 @@
     
 </head>
 <body>
-<header>
-   <nav class="navbar navbar-expand-sm  navbar-light"">
-      <a class="navbar-brand" href="#">
-          <img src="./styles/images/logo.png" alt="logo" style="width:100px;">
-      </a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-              <li>
-                  <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
-              </li>
-
-
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button type="submit">Search</button>
-          </form>
-
-
-      </div>
-      </nav>
-</header>
+<div id="header"> </div>
 
 <div class="container">
 
     <div>
         <h2>Post Defect</h2>
     </div>
+    
+     <%
+ CustomerDetails c = new CustomerDetails();
+Customers customer = new Customers();
+HttpSession Session = request.getSession(false); 
+if(Session!=null && session.getAttribute("cid") != null) 
+{	System.out.println(session.getAttribute("cid"));
+int cid=(int)session.getAttribute("cid");
+customer = c.getCustomer(cid);
+
+%>
+<% } %>
 
     <div class="row">
         <div class="col-sm-12 col-xs-12 col-lg-6 col-md-6">
@@ -88,21 +81,42 @@
             <form>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="" value="Philippe" disabled>
+                <input type="text" class="form-control" id="name" placeholder="" value=<%= customer.getFirstName() %> disabled>
             </div>
             <div class="form-group">
                 <label for="mail">Email</label>
-                <input type="email" class="form-control" id="mail" placeholder="" value="Coutinho" disabled>
+                <input type="email" class="form-control" id="mail" placeholder="" value=<%= customer.getEmail() %> disabled>
             </div>
             <div class="form-group">
                 <label for="phone">Phone</label>
-                <input type="text" class="form-control" id="phone" placeholder="" value="902-909-6142" disabled>
+                <input type="text" class="form-control" id="phone" placeholder="" value=<%= customer.getPhone() %> disabled>
             </div>
             <div class="form-group">
                 <label for="address">Address</label>
-                <textarea class="form-control" id="address" rows="5" disabled>1333 South Park Street</textarea>
+                <textarea class="form-control" id="address" rows="5" disabled><%= customer.getAddress() %></textarea>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">View on map</button>
             </div>
+         
             </form>
+            <div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div id="map" style="width:100%;height:300px"></div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <input id="submit" type="button" value="View Address">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
                 </div>
             </div>
         </div>
@@ -159,6 +173,46 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  function myMap() {
+	   	
+	  address = '6216 chebucto';
+	  var myCenter = new google.maps.LatLng(44.649661,-63.598035);
+	
+	   
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {center: myCenter, zoom: 5};
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    
+    var geocoder = new google.maps.Geocoder();
+
+    document.getElementById('submit').addEventListener('click', function() {
+      geocodeAddress(geocoder, map);
+    });
+  }
+  function geocodeAddress(geocoder, resultsMap) {
+      var address = document.getElementById('address').value;
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+  </script>
+
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5D8iYnTzWIxabHI-5NDOY77KrCkQEVsU&callback=myMap"></script>
+  
+  <script>
+  $("#header").load("./header.jsp");
+</script>
+
 
 
 

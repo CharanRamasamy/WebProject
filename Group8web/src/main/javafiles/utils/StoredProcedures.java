@@ -25,6 +25,14 @@ public class StoredProcedures {
 			+ "select customer_id,username,pwd,firstname from Customer; "
 			+ "END;";
 	
+	public String dropCustomerDetails = "DROP PROCEDURE IF EXISTS CustomerDetails";
+	public String getCustomerDetailsbycid = "CREATE PROCEDURE CustomerDetails "
+			+ "("
+			+ "IN cid int)"
+			+ "BEGIN "
+			+ "select firstname,lastname,emailid,phnumber,addr from Customer where customer_id = cid; "
+			+ "END;";
+	
 	public String dropDefectDetails = "DROP PROCEDURE IF EXISTS DefectDetails";
 	public String getDefectDetails = "CREATE PROCEDURE DefectDetails "
 			+ "("
@@ -79,6 +87,8 @@ public class StoredProcedures {
 			+ "insert into CustomerServiceRequests (customer_id,defect_id) "
 			+ "values (cid,did); "
 			+ "END;";
+	
+	
 	
 
 }
