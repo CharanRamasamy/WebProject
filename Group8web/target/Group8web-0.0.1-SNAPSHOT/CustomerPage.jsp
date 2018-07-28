@@ -6,16 +6,12 @@
 <%@ page import="main.javafiles.Defects" %>
 <%@ page import="main.javafiles.utils.DBConnection" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
   <title>RESolvewithTech(REST)</title>
 
@@ -26,46 +22,10 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./styles/modern-business.css" />
      <link rel="stylesheet" type="text/css" media="screen" href="./styles/styles.css" />
 
-      <style>
-          body{
-              background-image: url("./styles/images/bgimage.jpg");
-              height: 100%;
-              width: 100%;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              position: relative;
-              margin: 0;
-          }
-      </style>
+      
 </head>
 <body>
-  <!-- Navigation -->
-      <nav class="navbar navbar-expand-sm  navbar-light"">
-      <a class="navbar-brand" href="#">
-          <img src="./styles/images/logo.png" alt="logo" style="width:100px;">
-      </a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-              <li>
-                  <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
-              </li>
-
-
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button type="submit">Search</button>
-          </form>
-
-
-      </div>
-      </nav>
+ <div id="header"> </div>
       
       <div class="container">
 
@@ -86,17 +46,14 @@
 		<h5 class=""><a class="btn btn-warning" href="Customer_PostDefect.jsp">Add New  Defects</a></h5>
 		</div>
            <div class="mb-4">
-               <h5 class=""><a class="btn btn-warning" href="confirm_technician.html">View Request</a></h5>
+               <h5 class=""><a class="btn btn-warning" href="#" >View Request</a></h5>
            </div>
-		</div>
-</div>
-		<hr/>
-		
-      <!-- Blog Post -->
+           
+             <!-- Blog Post -->
 	   <div class="card mb-4">
 	  <h5 class="card-header">Previous History</h5>
 	  <div class="table">
-<table>
+<table >
  <%
  DefectDetails d = new DefectDetails();
 ArrayList<Defects> defectlist = new ArrayList<Defects>();
@@ -109,6 +66,14 @@ defectlist = d.getDefects(cid);
 
 %>
 <% } %>
+<tr>
+<th> Category </th>
+         <th>Service Request</th>
+          
+            <th>Details</th>
+             <th>Status</th>
+
+</tr>
 
  <%for(int i=0; i < defectlist.size(); i++)
     {
@@ -119,7 +84,7 @@ defectlist = d.getDefects(cid);
          <td style="width:20%"><%= defect.getdefect_Category() %></td>
          <td style="width:20%"><%= defect.getDefect_Name() %></td>
           
-            <td style="width:40%" ><%= defect.getdefect_Description() %></td>
+            <td style="width:40%" ><%= defect.getdefect_Description()%></td>
              <td style="width:10%" ><%=defect.getdefect_Status() %></td>
            
             </tr>
@@ -130,6 +95,15 @@ defectlist = d.getDefects(cid);
 </div>
        
 </div>
+           
+           
+           
+           
+		</div>
+
+		<hr/>
+		
+    
 
   
   <!-- /.container -->
@@ -147,7 +121,9 @@ defectlist = d.getDefects(cid);
     <script src="bootstrap/js/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script>
+  $("#header").load("./header.jsp");
+</script>
 
 </body>
 </html>

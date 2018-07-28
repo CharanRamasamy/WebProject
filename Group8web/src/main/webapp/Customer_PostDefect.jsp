@@ -6,13 +6,11 @@
 <%@ page import="main.javafiles.Customers" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <title>Customer Post Defect</title>
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
      <link rel="stylesheet" type="text/css" media="screen" href="./styles/styles.css" />
@@ -20,24 +18,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   
-    <script>
-        function validateForm() {
-            var name = document.forms["DetailForm"]["defectName"].value;
-            var category = document.forms["DetailForm"]["category"].value;
-            var description = document.forms["DetailForm"]["description"].value;
-            if (name == "") {
-                alert("Please Enter a Name");
-                return false;
-            } else if(description == "") {
-                alert("Please Enter a Defect Description");
-                return false;
-            }
-            else {
-                alert("Form successfully submitted");
-                return true;
-            }
-        }
-    </script>
+    
     <style>
           body{
               background-image: url("./styles/images/bgimage.jpg");
@@ -127,12 +108,13 @@ customer = c.getCustomer(cid);
                 <div class="card-body">
             <form name="DetailForm" onSubmit="return validateForm()" method="post" action="postnewdefect" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="defectName">Defect Name*</label>
+                    <label>Defect Name*</label>
                     <input type="text" class="form-control" name="defectName" id="defectName" placeholder="Name of Defect">
                 </div>
                 <div class="form-group">
-                    <label for="category">Select Category*</label>
+                    <label>Select Category*</label>
                     <select class="form-control" name="category" id="category">
+                         <option>--Select--</option>
                         <option>Automobile</option>
                         <option>Electronics</option>
                         <option>Furniture</option>
@@ -140,16 +122,16 @@ customer = c.getCustomer(cid);
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="uploadFile">Upload an Image</label>
-                    <input type="file" class="form-control-file" name="photo"id="photo" size="50">
+                    <label>Upload an Image</label>
+                    <input type="file" class="form-control-file" name="photo" id="photo" size="50">
                      
                 </div>
                 <div class="form-group">
-                    <label for="description">Defect Description*</label>
+                    <label>Defect Description*</label>
                     <textarea class="form-control" name="description" id="description" rows="3" placeholder="Description of the Problem"></textarea>
                 </div>
                  <div class="form-group">
-                    <label for="deadline">Deadline to fix the Defect*</label>
+                    <label >Deadline to fix the Defect*</label>
                      <input type="date" name="deadline">
                 </div>
                 
@@ -171,9 +153,40 @@ customer = c.getCustomer(cid);
 
 </footer>
 
+  <script>
+  function validateForm() {
+	  var v = document.forms["DetailForm"]["defectName"].value;
+	    if (v == "") {
+	        alert("Please enter the defect name");
+	        return false;
+	    }
+    var w = document.forms["DetailForm"]["category"].value;
+    if (w == "--Select--") {
+        alert("Please enter the category of defect");
+        return false;
+    }
+      var x = document.forms["DetailForm"]["photo"].value;
+      if (x == "") {
+          alert("Image must be filled out");
+          return false;
+      }
+      var y = document.forms["DetailForm"]["description"].value;
+      if (y == "") {
+          alert("Please enter defect description");
+          return false;
+      }
+      var z = document.forms["DetailForm"]["deadline"].value;
+      if (z == "") {
+          alert("Please enter the deadline to fix the defect");
+          return false;
+      }
+  }
+  </script>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script type="text/javascript">
+<script>
   function myMap() {
 	   	
 	  address = '6216 chebucto';

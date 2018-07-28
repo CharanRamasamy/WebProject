@@ -2,14 +2,11 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
 
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RESolvewithTech(REST)</title>
 
      <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +28,20 @@
             <li>
                 <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
             </li>
-           
+            <%
+HttpSession Session = request.getSession(false); 
+if(Session!=null && session.getAttribute("cid") != null) 
+{	
+	String name=session.getAttribute("fname").toString();
+%>
+			<li>
+			<a class="nav-link" href="#">Welcome! <%=name %> <span class="sr-only">(current)</span></a>
+               
+            </li>
+			<li>
+                <a class="nav-link" href="Logout">Logout <span class="sr-only">(current)</span></a>
+            </li>
+<% } %>
 
         </ul>
         <form class="form-inline my-2 my-lg-0">

@@ -6,16 +6,12 @@
 <%@ page import="main.javafiles.Defects" %>
 <%@ page import="main.javafiles.utils.DBConnection" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
   <title>RESolvewithTech(REST)</title>
 
@@ -26,18 +22,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./styles/modern-business.css" />
      <link rel="stylesheet" type="text/css" media="screen" href="./styles/styles.css" />
 
-      <style>
-          body{
-              background-image: url("./styles/images/bgimage.jpg");
-              height: 100%;
-              width: 100%;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              position: relative;
-              margin: 0;
-          }
-      </style>
+      
 </head>
 <body>
  <div id="header"> </div>
@@ -61,14 +46,14 @@
 		<h5 class=""><a class="btn btn-warning" href="Customer_PostDefect.jsp">Add New  Defects</a></h5>
 		</div>
            <div class="mb-4">
-               <h5 class=""><a class="btn btn-warning" href="confirm_technician.html">View Request</a></h5>
+               <h5 class=""><a class="btn btn-warning" href="#" >View Request</a></h5>
            </div>
            
              <!-- Blog Post -->
 	   <div class="card mb-4">
 	  <h5 class="card-header">Previous History</h5>
 	  <div class="table">
-<table align="center">
+<table >
  <%
  DefectDetails d = new DefectDetails();
 ArrayList<Defects> defectlist = new ArrayList<Defects>();

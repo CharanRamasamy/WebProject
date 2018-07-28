@@ -148,7 +148,7 @@ public class PostDefect extends HttpServlet {
 				calstat.setInt(1,customer_id);
 				calstat.setInt(2,defectid);
 				if(!calstat.execute()) {
-					message = "Record added";
+					 response.sendRedirect("CustomerPage.jsp");
 				}
 				
 				
@@ -179,9 +179,6 @@ public class PostDefect extends HttpServlet {
                 }
             }
         }
-        request.setAttribute("Message", message);
-
-        // forwards to the message page
-        getServletContext().getRequestDispatcher("/Message.jsp").forward(request, response);
+        
     }
 }

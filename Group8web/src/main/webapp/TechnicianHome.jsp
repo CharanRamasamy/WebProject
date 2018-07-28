@@ -26,18 +26,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./styles/modern-business.css" />
      <link rel="stylesheet" type="text/css" media="screen" href="./styles/styles.css" />
 
-      <style>
-          body{
-              background-image: url("./styles/images/bgimage.jpg");
-              height: 100%;
-              width: 100%;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              position: relative;
-              margin: 0;
-          }
-      </style>
+      
 </head>
 <body>
 <div id="header"> </div>

@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RESolvewithTech(REST)</title>
 
@@ -49,9 +48,20 @@
 
 <div class="container buttons">
     <div class="row">
+    
+    <%
+HttpSession Session = request.getSession(false); 
+if(Session!=null && session.getAttribute("cid") != null) 
+{	
+%>
+<div class="col-sm-12 col-xs-6 col-lg-6 col-md-6"><a class="btn btn-md btn-success" href="CustomerPage.jsp">I am a Customer</a></div>
+<% } %>
+ <%
+if(session.getAttribute("cid") == null){%>
         <div class="col-sm-12 col-xs-6 col-lg-6 col-md-6"><a class="btn btn-md btn-success" href="CustomerLogin.jsp">I am a Customer</a></div>
+        <% } %>
         <div class="clearfix visible-sm-block"></div>
-        <div class="col-sm-12 col-xs-6 col-lg-6 col-md-6"><a class="btn btn-md btn-success" href="TechnicianLogin.jsp">I am a Technician</a></div>
+        <div class="col-sm-12 col-xs-6 col-lg-6 col-md-6"><a class="btn btn-md btn-success" href="#">I am a Technician</a></div>
     </div>
 </div>
 
