@@ -103,6 +103,9 @@ public class LoginCustomer extends HttpServlet {
 				 
 				 
 			}
+			if(page=="/CustomerLogin.jsp") {
+				message = "Invalid Credentials...Try Again!";
+			}
 			
 			
 			

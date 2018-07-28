@@ -61,7 +61,7 @@ if(session.getAttribute("cid") == null){%>
         <div class="col-sm-12 col-xs-6 col-lg-6 col-md-6"><a class="btn btn-md btn-success" href="CustomerLogin.jsp">I am a Customer</a></div>
         <% } %>
         <div class="clearfix visible-sm-block"></div>
-        <div class="col-sm-12 col-xs-6 col-lg-6 col-md-6"><a class="btn btn-md btn-success" href="#">I am a Technician</a></div>
+        <div class="col-sm-12 col-xs-6 col-lg-6 col-md-6"><a class="btn btn-md btn-success" href="TechnicianHome.jsp">I am a Technician</a></div>
     </div>
 </div>
 

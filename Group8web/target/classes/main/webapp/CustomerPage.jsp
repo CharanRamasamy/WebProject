@@ -36,7 +36,7 @@
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="index.html">Home</a>
+          <a href="index.jsp">Home</a>
         </li>
         <li class="breadcrumb-item active">Customer Page</li>
       </ol>
@@ -46,7 +46,7 @@
 		<h5 class=""><a class="btn btn-warning" href="Customer_PostDefect.jsp">Add New  Defects</a></h5>
 		</div>
            <div class="mb-4">
-               <h5 class=""><a class="btn btn-warning" href="#" >View Request</a></h5>
+               <h5 class=""><a class="btn btn-warning" href="ViewRequest.jsp" >View Request</a></h5>
            </div>
            
              <!-- Blog Post -->

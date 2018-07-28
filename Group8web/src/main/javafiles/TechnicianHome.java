@@ -21,7 +21,7 @@ public class TechnicianHome {
 	CallableStatement calstat= null;
 	ResultSet resultSet = null;
 	
-public ArrayList<Defects> getDefectsbyCategory(String categoryname) throws SQLException, ClassNotFoundException
+public ArrayList<Defects> getDefectsbyCategory(int id) throws SQLException, ClassNotFoundException
 	
 	{
 		ArrayList<Defects> defectlist = new ArrayList<Defects>();
@@ -30,8 +30,28 @@ public ArrayList<Defects> getDefectsbyCategory(String categoryname) throws SQLEx
 			conn = dbConnection.getConnection();
 			
 	            // constructs SQL statement
+			
+			 stmtDrop = (Statement) conn.createStatement();
+				//Dropping the existing procedure
+				stmtDrop.execute(stp.dropTechnicianDetails);
+				stmt = (Statement) conn.createStatement();
+				//Creating New Procedure
+				stmt.execute(stp.getTechnicianDetailsbytid);
+				//Calling the Procedure
+
+				calstat = (CallableStatement) conn.prepareCall("{call TechnicianDetails(?)}");
+				 
+				
+				
+				calstat.setInt(1,id);
+				String categoryname = null;
+				resultSet = calstat.executeQuery();
+				while(resultSet.next()) {
+					categoryname = resultSet.getString("categories");
+				}
 	            
-	            
+			
+			
 	            stmtDrop = (Statement) conn.createStatement();
 				//Dropping the existing procedure
 				stmtDrop.execute(stp.dropDefectbyCategory);

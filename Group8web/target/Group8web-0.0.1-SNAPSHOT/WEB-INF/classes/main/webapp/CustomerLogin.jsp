@@ -43,6 +43,9 @@
             <h5 class="card-header">Login</h5>
             <div class="card-body">
 			<form name="login_customer" onSubmit="return validateLogin()" method="post" action="logincheck">
+			  <%   if(request.getAttribute("Message")!=null) { %>
+                           <span class="Error_block" id="error"><%=request.getAttribute("Message") %></span><br> 
+                           <%} %>
 			 <div class="control-group form-group">
               <div class="controls">
                 <label>Username:</label>

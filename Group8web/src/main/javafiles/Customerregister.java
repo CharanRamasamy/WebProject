@@ -91,7 +91,7 @@ public class Customerregister extends HttpServlet {
 			calstat.setString(5,pwd);
 			calstat.setString(6,addr);
 			calstat.setString(7,pc);
-			calstat.setString(8, pc);
+			calstat.setString(8, ph);
 			
 			
 			calstat.execute();

@@ -19,19 +19,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   
     
-    <style>
-          body{
-              background-image: url("./styles/images/bgimage.jpg");
-              height: 100%;
-              width: 100%;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              position: relative;
-              margin: 0;
-          }
-      </style>
-    
 </head>
 <body>
 <div id="header"> </div>
@@ -189,7 +176,7 @@ customer = c.getCustomer(cid);
 <script>
   function myMap() {
 	   	
-	  address = '6216 chebucto';
+	  
 	  var myCenter = new google.maps.LatLng(44.649661,-63.598035);
 	
 	   

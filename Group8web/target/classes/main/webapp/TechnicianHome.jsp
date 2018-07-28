@@ -6,16 +6,14 @@
 <%@ page import="main.javafiles.Defects" %>
 <%@ page import="main.javafiles.utils.DBConnection" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
   <title>RESolvewithTech(REST)</title>
 
@@ -25,27 +23,48 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" media="screen" href="./styles/modern-business.css" />
      <link rel="stylesheet" type="text/css" media="screen" href="./styles/styles.css" />
-
       
 </head>
 <body>
 <div id="header"> </div>
-<table align="center">
+   
+      <div class="container">
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">Technician
+        <small>Page</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="index.jsp">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Technician Page</li>
+      </ol>
+
+   
+		
+           
+             <!-- Blog Post -->
+	   <div class="card mb-4">
+	 
+	  <div class="table">
+<table >
  <%
 TechnicianHome d = new TechnicianHome();
 ArrayList<Defects> defectlist = new ArrayList<Defects>();
 HttpSession Session = request.getSession(false); 
-
-defectlist = d.getDefectsbyCategory("Furniture");
+if(Session!=null && session.getAttribute("tid") != null) 
+{	System.out.println(session.getAttribute("tid"));
+    int id = (int)session.getAttribute("tid");
+defectlist = d.getDefectsbyCategory(id);
 
 
 %>
-
+<% } %>
 <tr>
 <th> Service Request name </th>
          <th>Service Request Details</th>
-          
-            <th>Details</th>
              <th>View Details</th>
 
 </tr>
@@ -69,6 +88,15 @@ defectlist = d.getDefectsbyCategory("Furniture");
         <%}%>
         
 </table>
+</div>
+       
+</div>
+           
+           
+           
+           
+		</div>
+
 
 
 
