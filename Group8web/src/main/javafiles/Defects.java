@@ -9,6 +9,7 @@ public class Defects {
     private String defect_Category;
     private String defect_Status;
     
+    
 
     public void setDefect_Name(String defect_Name) 
     { 

@@ -66,6 +66,7 @@ defectlist = d.getDefectsbyCategory(id);
 <th> Service Request name </th>
          <th>Service Request Details</th>
              <th>View Details</th>
+             <th>Status</th>
 
 </tr>
 
@@ -79,11 +80,11 @@ defectlist = d.getDefectsbyCategory(id);
          <td style="width:20%"><%= defect.getDefect_Name() %></td>
           
             <td style="width:60%" ><%= defect.getdefect_Description()%></td>
-             <td style="width:20%" >
+             <td style="width:10%" >
              <a href="TechnicianDefectDetails.jsp?defectname=<%= defect.getDefect_Name()  %>" class="btn btn-primary">View Details</a>
              </td>
-           
-            </tr>
+             <td>
+             <td style="width:10%"><%= defect.getdefect_Status() %></td>
         
         <%}%>
         

@@ -20,6 +20,7 @@ public class TechnicianHome {
 	StoredProcedures stp = new StoredProcedures();
 	CallableStatement calstat= null;
 	ResultSet resultSet = null;
+	ResultSet resultSet1 = null;
 	
 public ArrayList<Defects> getDefectsbyCategory(int id) throws SQLException, ClassNotFoundException
 	
@@ -62,20 +63,51 @@ public ArrayList<Defects> getDefectsbyCategory(int id) throws SQLException, Clas
 
 				calstat = (CallableStatement) conn.prepareCall("{call DefectbyCategory(?)}");
 				 
-				
+				int defectid =0;
+				int tech_id=0;
+				String flag = null;
 				
 				calstat.setString(1, categoryname);
-				int defectid =0;
+				
 				resultSet = calstat.executeQuery();
+				
 			while (resultSet.next()) {
 				
+				flag=resultSet.getString("flag_status");
+				defectid = resultSet.getInt("defect_id");
+				stmtDrop = (Statement) conn.createStatement();
+				//Dropping the existing procedure
+				stmtDrop.execute(stp.dropTechnicianidforDid);
+				stmt = (Statement) conn.createStatement();
+				//Creating New Procedure
+				stmt.execute(stp.getTechnicianidforDid);
+				//Calling the Procedure
+
+				calstat = (CallableStatement) conn.prepareCall("{call TechnicianidforDid(?)}");
+				calstat.setInt(1, defectid);
+				resultSet1 = calstat.executeQuery();
+				while(resultSet1.next()) {
+					tech_id = resultSet1.getInt("techid");
+					System.out.println("bjhbsbv:"+tech_id);
+					
+				}
 				
-				
+				if(flag.equals("Initiated")) {
 				Defects defect = new Defects();
 				defect.setDefect_Name(resultSet.getString("defect_name"));
 				defect.setdefect_Description(resultSet.getString("details"));
-				
+				defect.setdefect_Status(flag);
 				defectlist.add(defect);
+				}
+				if(id==tech_id&&(flag.equals("Requested")||(flag.contains("Assigned")))) {
+					Defects defect = new Defects();
+					defect.setDefect_Name(resultSet.getString("defect_name"));
+					defect.setdefect_Description(resultSet.getString("details"));
+					defect.setdefect_Status(flag);
+					defectlist.add(defect);
+					
+				}
+				
 			}
 		        
 			
