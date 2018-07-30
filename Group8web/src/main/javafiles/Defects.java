@@ -59,6 +59,9 @@ public class Defects {
         
     }
     
-
+    @Override
+    public String toString(){
+    	return "Defects=[defectName = "+defect_Name+",defectCategory = "+defect_Description+",defectName = "+defect_Category+",defectStatus = "+defect_Status+"]"; 
+    }
 	
 }
