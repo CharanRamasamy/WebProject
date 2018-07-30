@@ -72,6 +72,7 @@ public ArrayList<Defects> getDefectsbyCategory(int id) throws SQLException, Clas
 				
 				
 				Defects defect = new Defects();
+				defect.setDefect_Id(resultSet.getInt("defect_id"));
 				defect.setDefect_Name(resultSet.getString("defect_name"));
 				defect.setdefect_Description(resultSet.getString("details"));
 				defect.setdefect_Status(resultSet.getString("flag_status"));
@@ -109,5 +110,67 @@ public ArrayList<Defects> getDefectsbyCategory(int id) throws SQLException, Clas
           dbConnection.CloseSSHConnection();
 		return defectlist;
 		}
+
+
+public String getTechnicianFlag(int did,int tid) throws SQLException, ClassNotFoundException
+
+{
+	String flag = null;
+	try {
+		int cid = 0;
+		conn = dbConnection.getConnection();
+		
+           
+            stmtDrop = (Statement) conn.createStatement();
+			//Dropping the existing procedure
+			stmtDrop.execute(stp.dropTechnicianFlag);
+			stmt = (Statement) conn.createStatement();
+			//Creating New Procedure
+			stmt.execute(stp.getTechnicianFlag);
+			//Calling the Procedure
+
+			calstat = (CallableStatement) conn.prepareCall("{call TechFlag(?,?)}");
+			 
+			
+			
+			calstat.setInt(1, did);
+			calstat.setInt(2, tid);
+			resultSet = calstat.executeQuery();
+		while (resultSet.next()) {
+			flag = resultSet.getString("flag");
+		}
+	        
+		
+		 
+
+	       
+	        
+		}
+	catch (SQLException ex ) {
+		ex.printStackTrace();
+		}
+	
+		 finally
+			{
+			 if (conn != null) {
+	                // closes the database connection
+	                try {
+	                    conn.close();
+	                    calstat.close();
+	                    dbConnection.CloseSSHConnection();
+	                } 
+	                catch (SQLException ex) {
+	                    ex.printStackTrace();
+	                }
+	            }
+			 	
+			 	
+			}
+	  conn.close();
+      calstat.close();
+      dbConnection.CloseSSHConnection();
+	return flag;
+	}
+
 
 }

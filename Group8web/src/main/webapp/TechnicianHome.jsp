@@ -84,8 +84,15 @@ defectlist = d.getDefectsbyCategory(id);
              <td style="width:20%" >
              <a href="TechnicianDefectDetails.jsp?defectname=<%= defect.getDefect_Name()  %>" class="btn btn-primary">View Details</a>
              </td>
+             <% 
+             int tid = (int)session.getAttribute("tid");
+             String flag = d.getTechnicianFlag(defect.getDefect_Id(),tid);
+             String printFlag = "Assigned to you";
+             if(defect.getdefect_Status().equals("Assigned to Technician...In Progress") && flag!=null && flag!="" && flag.equals("Assigned")){ %>
+             <td style="width:60%" >Assigned to you</td>
+             <%} else { %>
             <td style="width:60%" ><%= defect.getdefect_Status()%></td>
-             
+             <%} %>
             </tr>
              
         <%}%>

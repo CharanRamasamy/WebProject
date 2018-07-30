@@ -79,7 +79,7 @@ public class StoredProcedures {
 			+ "("
 			+ "IN catname varchar(40))"
 			+ "BEGIN "
-			+ "select defect_name,details,flag_status from ServiceRequest where category = catname; "
+			+ "select defect_id,defect_name,details,flag_status from ServiceRequest where category = catname; "
 			+ "END;";
 	
 	public String dropDefectidforCid = "DROP PROCEDURE IF EXISTS DefectidforCid";
@@ -165,6 +165,14 @@ public class StoredProcedures {
 			+ "UPDATE TechnicianServiceRequests SET flag = msg WHERE defectid = did; "
 			+ "END;";
 	
+	public String dropTechnicianFlag = "DROP PROCEDURE IF EXISTS TechFlag";
+	public String getTechnicianFlag = "CREATE PROCEDURE TechFlag "
+			+ "("
+			+ "IN did int,"
+			+ "IN tid int)"
+			+ "BEGIN "
+			+ "SELECT flag from TechnicianServiceRequests WHERE defectid=did AND techid=tid; "
+			+ "END;";
 	
 
 }
