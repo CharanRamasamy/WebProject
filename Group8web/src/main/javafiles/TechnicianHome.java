@@ -74,7 +74,7 @@ public ArrayList<Defects> getDefectsbyCategory(int id) throws SQLException, Clas
 				Defects defect = new Defects();
 				defect.setDefect_Name(resultSet.getString("defect_name"));
 				defect.setdefect_Description(resultSet.getString("details"));
-				
+				defect.setdefect_Status(resultSet.getString("flag_status"));
 				defectlist.add(defect);
 			}
 		        

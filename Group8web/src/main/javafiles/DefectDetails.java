@@ -320,6 +320,7 @@ public ArrayList<Defects> getRequestDefects(int cid) throws SQLException, ClassN
 			 	
 			 	
 			}
+		System.out.println(cd);
 		return cd;
 
 }
