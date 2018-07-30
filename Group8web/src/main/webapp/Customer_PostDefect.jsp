@@ -152,11 +152,6 @@ customer = c.getCustomer(cid);
         alert("Please enter the category of defect");
         return false;
     }
-      var x = document.forms["DetailForm"]["photo"].value;
-      if (x == "") {
-          alert("Image must be filled out");
-          return false;
-      }
       var y = document.forms["DetailForm"]["description"].value;
       if (y == "") {
           alert("Please enter defect description");
