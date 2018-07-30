@@ -42,8 +42,6 @@
         <li class="breadcrumb-item active">Technician Page</li>
       </ol>
 
-   
-		
            
              <!-- Blog Post -->
 	   <div class="card mb-4">
@@ -62,10 +60,12 @@ defectlist = d.getDefectsbyCategory(id);
 
 %>
 <% } %>
+
 <tr>
 <th> Service Request name </th>
          <th>Service Request Details</th>
              <th>View Details</th>
+             <th>Status</th>
 
 </tr>
 
@@ -74,6 +74,8 @@ defectlist = d.getDefectsbyCategory(id);
 	 Defects defect = new Defects();
 	 defect = (Defects) defectlist.get(i);
         %>
+        <%String status = defectlist.get(i).getdefect_Status(); %>
+		<% session.setAttribute("statusId", status); %>
         <tr>
          
          <td style="width:20%"><%= defect.getDefect_Name() %></td>
@@ -82,19 +84,16 @@ defectlist = d.getDefectsbyCategory(id);
              <td style="width:20%" >
              <a href="TechnicianDefectDetails.jsp?defectname=<%= defect.getDefect_Name()  %>" class="btn btn-primary">View Details</a>
              </td>
-           
+            <td style="width:60%" ><%= defect.getdefect_Status()%></td>
+             
             </tr>
-        
+             
         <%}%>
         
 </table>
 </div>
        
-</div>
-           
-           
-           
-           
+</div>         
 		</div>
 
 

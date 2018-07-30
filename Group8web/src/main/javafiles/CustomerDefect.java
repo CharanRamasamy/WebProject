@@ -115,9 +115,10 @@ public class CustomerDefect {
     { 
         return (this.addr);
     }
-    
-
-    
-
+ 
+    @Override
+    public String toString(){
+    	return "CustomerDefect=[defectName="+defect_Name+",defectDescription="+defect_Description+",defectCategory="+defect_Category+",defectStatus="+defect_Status+",firstName="+firstname+",lastName="+lastname+",Email="+emailid+",PhoneNumber="+phnumber+",Address="+addr+"]";
+    }
 
 }
