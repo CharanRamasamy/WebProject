@@ -440,9 +440,13 @@ public TechnicianDefect getTechnicianandDefect(String defectname) {
 		
 		calstat.setInt(1, defectid);
 		int techid =0;
+		String fees = null;
+		String comments = null;
 		resultSet = calstat.executeQuery();
 		while(resultSet.next()) {
 			techid = resultSet.getInt("techid");
+			fees = resultSet.getString("fee");
+			comments = resultSet.getString("comments");
 		
 		}
 		stmtDrop = (Statement) conn.createStatement();
@@ -471,6 +475,8 @@ public TechnicianDefect getTechnicianandDefect(String defectname) {
 		td.setPhone(resultSet.getString("phone_num"));
 		td.setAddress(resultSet.getString("address"));
 		td.setSkills(resultSet.getString("skills"));
+		td.setFees(fees);
+		td.setComments(comments);
 		
 		
 	}

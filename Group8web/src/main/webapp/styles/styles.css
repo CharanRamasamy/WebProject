@@ -204,12 +204,12 @@ p{
 
 .formDisplay{
 	font-size: 140%;
-	color: #1e2530;
+	color: #ff8040;
 }
 
 .formValueDisplay{
 	font-size: 140%;
-	color: green;
+	color: #008080;
 }
 
 /*______________________________________________  Media Queries _________________________________________________*/

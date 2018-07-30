@@ -51,9 +51,11 @@ public class CommitToDefect extends HttpServlet {
         // gets values of text fields
 
 		String message = null;
+		String fee = request.getParameter("proposedfee");
 		
-		
+		String comments = request.getParameter("Comments");
 		String defect_name = request.getParameter("defectname");
+		
 	
         
      
@@ -96,12 +98,15 @@ public class CommitToDefect extends HttpServlet {
 		stmt.execute(stp.inserttechniciandefect);
 		//Calling the Procedure
 
-		calstat = (CallableStatement) conn.prepareCall("{call TagTechniciandefect(?,?,?)}");
+		calstat = (CallableStatement) conn.prepareCall("{call TagTechniciandefect(?,?,?,?,?)}");
 		
 		calstat.setInt(1,defectid );
 		
 		calstat.setInt(2,techid );
 		calstat.setString(3, "Requested");
+		calstat.setString(4, fee);
+		
+		calstat.setString(5,comments);
 		calstat.execute();
 		
 		stmtDrop.execute(stp.dropUpdateflag);

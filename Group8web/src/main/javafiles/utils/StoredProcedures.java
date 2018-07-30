@@ -102,7 +102,7 @@ public class StoredProcedures {
 			+ "("
 			+ "IN did int)"
 			+ "BEGIN "
-			+ "select techid from TechnicianServiceRequests where defectid = did; "
+			+ "select techid,fee,comments from TechnicianServiceRequests where defectid = did; "
 			+ "END;";
 	
 	public String dropInsertDefect = "DROP PROCEDURE IF EXISTS AddDefect;";
@@ -141,10 +141,12 @@ public class StoredProcedures {
 			+ "("
 			+ "IN did int,"
 			+ "IN tid int,"
-			+ "IN fl varchar(45))"
+			+ "IN fl varchar(45),"
+			+ "IN fe varchar(45),"
+			+ "IN com varchar(100))"
 			+ "BEGIN "
-			+ "insert into TechnicianServiceRequests (defectid,techid,flag) "
-			+ "values (did,tid,fl); "
+			+ "insert into TechnicianServiceRequests (defectid,techid,flag,fee,comments) "
+			+ "values (did,tid,fl,fe,com); "
 			+ "END;";
 	
 	public String dropUpdateflag = "DROP PROCEDURE IF EXISTS UpdateFlag";

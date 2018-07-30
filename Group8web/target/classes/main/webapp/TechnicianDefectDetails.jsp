@@ -56,7 +56,7 @@ int customer_assigned = dd.getCustomerIdForDefectId(did);
  
  <div class="col-md-offset-3 col-md-6 centre-form">
 
- <form name="CommitDefectform" onSubmit="return validateLogin()" method="post" action="commitDefect?defectname=<%= defect_name %>">
+
 
   <div class="form-group row">
     <label for="categoryStatic" class="col-md-6 col-form-label formDisplay"><b>Category</b></label>
@@ -120,18 +120,56 @@ int customer_assigned = dd.getCustomerIdForDefectId(did);
               <td style="width:60%">
               </tr>
             </table>
-            <% if(flag==null)
+
+           
+
+</div>
+           
+
+
+ <form name="CommitDefectform" method="post" action="commitDefect?defectname=<%= defect_name %>">
+  <% if(flag==null)
             {%>
+  <div class="control-group form-group">
+              <div class="controls">
+                <label>Proposed Fee</label>
+                <input type="text" class="form-control" placeholder="Fee" name="proposedfee" id="proposedfee">
+              </div>
+            </div>
+ <div class="control-group form-group">
+              <div class="controls">
+                <label>Comments</label>
+                <input type="text" class="form-control" placeholder="Comments" name="Comments" id="Comments">
+              </div>
+            </div>
+            <div class="control-group form-group">
+              <div class="controls">
+  			
             <button type="submit" class="btn btn-primary">Commit</button>
             <%} else if(flag.equals("Requested")){ %>
             <button type="submit" class="btn btn-primary" disabled>Commit</button>
-            <%} else if(flag.equals("Accepted")){%>
+            <%} else if(flag.equals("Assigned")){%>
             <button type="submit" class="btn btn-primary">Update</button>
             <%} else if(flag.equals("Declined")){ %>
+             <div class="control-group form-group">
+              <div class="controls">
+                <label>Proposed Fee</label>
+                <input type="text" class="form-control" placeholder="Fee" name="proposedfee" id="proposedfee">
+              </div>
+            </div>
+ <div class="control-group form-group">
+              <div class="controls">
+                <label>Comments</label>
+                <input type="text" class="form-control" placeholder="Comments" name="Comments" id="Comments">
+              </div>
+            </div>
+            <div class="control-group form-group">
+              <div class="controls">
             <button type="submit" class="btn btn-primary">Commit</button>
             <%} %>
-</form>
-</div>
+  			</div>
+  			</div>
+ </form>
 
        <div class="modal" id="myModal">
   <div class="modal-dialog">
