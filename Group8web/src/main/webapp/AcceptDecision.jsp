@@ -34,67 +34,84 @@
 String defect_name = request.getParameter("defectname");
 DefectDetails dd = new DefectDetails();
 TechnicianDefect cd = new TechnicianDefect();
-
 cd = dd.getTechnicianandDefect(defect_name);
-
-
-
 %>
 
 <div id="header"> </div>
 
 <div class="container centre-form">
-  	<h3>Defect Details:</h3>
+  	<h1 class="DefectHeadTitle">Confirmation Page</h1>
   	<hr>
  
  <form name="CommitDefectform" onSubmit="return validateLogin()" method="post" action="AcceptRequest?defectname=<%= defect_name %>">
 
-           <table style="width:100%">
+<div class="col-md-offset-3 col-md-6 centre-form">
 
-             <tr>
-                <td style="width:40%">Category:</td>
-                <td style="width:60%"><%= cd.getdefect_Category() %></td>
-
-              </tr>
-              <tr>
-                <td style="width:40%">Technician Name:</td>
-                <td style="width:60%"><%= cd.getFirstName() %></td>
-              </tr>
-              <tr>
-                <td style="width:40%">DefectDescription:</td>
-                <td style="width:60%"><%= cd.getdefect_Description() %></td>
-              </tr>
-               <tr>
-                <td style="width:40%">Technician Skills:</td>
-                <td style="width:60%"><%= cd.getSkills() %></td>
-              </tr>
-              <tr>
-                <td style="width:40%">Technician Contact:</td>
-                <td style="width:60%">Phone: <%= cd.getPhone() %>...EmailId: <%= cd.getEmail() %></td>
-              </tr>
-              <tr>
-                <td style="width:40%">Proposed Fees</td>
-                <td style="width:60%"> <%=  cd.getfees() %></td>
-              </tr>
-               <tr>
-                <td style="width:40%">Comments from Technician</td>
-                <td style="width:60%"> <%=  cd.getComments() %></td>
-              </tr>
-              <tr >
-                <td style="width:40%">Technician Address:</td>
-                <td style="width:60%">
-                  <textarea class="form-control" id="address" rows="5" disabled><%= cd.getAddress() %></textarea>
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  <div class="form-group row">
+    <label for="categoryName" class="col-md-6 col-form-label formDisplay"><b>Category</b></label>
+    <div class="col-sm-6 md-6">
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="categoryName" value=<%= cd.getdefect_Category()%>>
+    </div>
+  </div>
+  
+      <div class="form-group row">
+    <label for="techName" class="col-md-6 col-form-label formDisplay"><b>Technician Name</b></label>
+    <div class="col-sm-6 md-6">
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="techName" value=<%= cd.getFirstName()%>>
+    </div>
+  </div>
+  
+    <div class="form-group row">
+    <label for="defectDescription" class="col-md-6 col-form-label formDisplay"><b>Defect Description</b></label>
+    <div class="col-sm-6 md-6">
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="defectDescription" value=<%= cd.getdefect_Description()%>>
+    </div>
+  </div>
+  
+     <div class="form-group row">
+    <label for="techSkills" class="col-md-6 col-form-label formDisplay"><b>Technician Skills</b></label>
+    <div class="col-sm-6 md-6">
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="techSkills" value=<%= cd.getSkills()%>>
+    </div>
+  </div>
+  
+       <div class="form-group row">
+    <label for="contactTech" class="col-md-6 col-form-label formDisplay"><b>Contact Technician</b></label>
+    <div class="col-sm-6 md-6">
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="contactTech" value=<%= cd.getPhone()%>>
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="contactTech" value=<%= cd.getEmail()%>>
+    </div>
+  </div>
+  
+       <div class="form-group row">
+    <label for="proposedFee" class="col-md-6 col-form-label formDisplay"><b>Proposed Fees</b></label>
+    <div class="col-sm-6 md-6">
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="proposedFee" value=<%= cd.getfees()%>>
+    </div>
+  </div>
+  
+         <div class="form-group row">
+    <label for="techComments" class="col-md-6 col-form-label formDisplay"><b>Technician Comments</b></label>
+    <div class="col-sm-6 md-6">
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="techComments" value=<%= cd.getComments()%>>
+    </div>
+  </div>
+  
+         <div class="form-group row">
+    <label for="technicianAddr" class="col-md-6 col-form-label formDisplay"><b>Technician Address</b></label>
+    <div class="col-sm-6 md-6">
+    <textarea class="form-control" id="address" rows="3" disabled><%= cd.getAddress() %></textarea>
+    <hr/>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
     View on map
-  </button>
-                </td>
-              </tr>
-              <tr>
-              <td style="width:40%"></td>
-              <td style="width:60%">
-              </tr>
-            </table>
-            <button type="submit" class="btn btn-primary">Accept</button>
+  	</button>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success btn-block">Accept</button>
+  
+  </div>
+
+
 </form>
 
        <div class="modal" id="myModal">

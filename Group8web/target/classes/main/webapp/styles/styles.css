@@ -204,12 +204,26 @@ p{
 
 .formDisplay{
 	font-size: 140%;
-	color: #ff8040;
+	color: #804000;
 }
 
 .formValueDisplay{
 	font-size: 140%;
 	color: #008080;
+}
+
+.DefectHeadTitle{
+	color: #2a7c07;
+}
+
+.tableHeader{
+	color: #71268e;
+	font-size: 120%;
+}
+
+li{
+	font-weight: bold;
+	font-size: 120%;
 }
 
 /*______________________________________________  Media Queries _________________________________________________*/

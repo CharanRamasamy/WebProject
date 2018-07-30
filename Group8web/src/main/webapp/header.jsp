@@ -61,10 +61,7 @@ if(Session!=null && session.getAttribute("tid") != null)
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button type="submit">Search</button>
         </form>
-
-
     </div>
     </nav>
-
 </body>
 </html>

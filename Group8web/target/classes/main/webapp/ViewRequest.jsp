@@ -37,7 +37,7 @@
       </h1>          
             
 	   <div class="card mb-4">
-	  <h5 class="card-header">View Requests</h5>
+	  <h5 class="card-header text-center" style="color: #71268e; font-size: 150%;">Pending Requests</h5>
 	  <%
  DefectDetails d = new DefectDetails();
 ArrayList<Defects> defectlist = new ArrayList<Defects>();
@@ -54,17 +54,15 @@ defectlist = d.getRequestDefects(cid);
 	  
 	  <div class="table">
 	  
-<table >
+<table>
  
 <tr>
-<th> Category </th>
-         <th>Service Request</th>
-          
-            <th>Details</th>
-             <th>Status</th>
-             <th>Accept</th>
-              <th>Deadline</th>
-
+<th class="tableHeader"> Category </th>
+         <th class="tableHeader">Service Request</th>        
+            <th class="tableHeader">Details</th>
+             <th class="tableHeader">Status</th>
+             <th class="tableHeader">Accept</th>
+              <th class="tableHeader">Decline</th>
 </tr>
 
  <%for(int i=0; i < defectlist.size(); i++)
@@ -79,24 +77,18 @@ defectlist = d.getRequestDefects(cid);
             <td style="width:30%" ><%= defect.getdefect_Description()%></td>
              <td style="width:10%" ><%=defect.getdefect_Status() %></td>
              <td style="width:10%" >
-             <a href="AcceptDecision.jsp?defectname=<%= defect.getDefect_Name() %>" class="btn btn-primary">Accept</a>
+             <a href="AcceptDecision.jsp?defectname=<%= defect.getDefect_Name() %>" class="btn btn-success">Accept</a>
              </td>
            	<td style="width:10%" >
-           	<a href="DeclineDecision.jsp?defectname=<%= defect.getDefect_Name() %>" class="btn btn-primary">Decline</a>
+           	<a href="DeclineDecision.jsp?defectname=<%= defect.getDefect_Name() %>" class="btn btn-danger">Decline</a>
            	</td>
             </tr>
         
         <%}%>
         
 </table>
-
 </div>
-      
 </div>
-           
-           
-           
-           
 		</div>
 		
 		<script>
