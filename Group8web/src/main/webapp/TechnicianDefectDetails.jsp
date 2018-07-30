@@ -1,4 +1,3 @@
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
@@ -27,7 +26,8 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
- 
+
+      
 </head>
 <body>
 <% 
@@ -46,76 +46,46 @@ cd = dd.getCustomerandDefect(defect_name);
 <div class="container centre-form">
   	<h3>Defect Details:</h3>
   	<hr>
+ 
+ <form name="CommitDefectform" onSubmit="return validateLogin()" method="post" action="commitDefect?defectname=<%= defect_name %>">
 
-		<form name="CommitDefectform" onSubmit="return validateLogin()"
-			method="post" action="commitDefect?defectname=<%= defect_name %>">
+           <table style="width:100%">
 
-			<table style="width: 100%">
+             <tr>
+                <td style="width:40%">Category:</td>
+                <td style="width:60%"><%= cd.getdefect_Category() %></td>
 
-				<tr>
-					<td style="width: 40%">Category:</td>
-					<td style="width: 60%"><%= cd.getdefect_Category() %></td>
+              </tr>
+              <tr>
+                <td style="width:40%">CustomerName:</td>
+                <td style="width:60%"><%= cd.getFirstName() %></td>
+              </tr>
+              <tr>
+                <td style="width:40%">DefectDescription:</td>
+                <td style="width:60%"><%= cd.getdefect_Description() %></td>
+              </tr>
+              <tr>
+                <td style="width:40%">Customer Contact:</td>
+                <td style="width:60%">Phone: <%= cd.getPhone() %>...EmailId: <%= cd.getEmail() %></td>
+              </tr>
+              <tr >
+                <td style="width:40%">CustomerAddress:</td>
+                <td style="width:60%">
+                  <textarea class="form-control" id="address" rows="5" disabled><%= cd.getAddress() %></textarea>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    View on map
+  </button>
+                </td>
+              </tr>
+              <tr>
+              <td style="width:40%"></td>
+              <td style="width:60%">
+              </tr>
+            </table>
+            <button type="submit" class="btn btn-primary">Commit</button>
+</form>
 
-				</tr>
-				<tr>
-					<td style="width: 40%">Customer Name:</td>
-					<td style="width: 60%"><%= cd.getFirstName() %></td>
-				</tr>
-				<tr>
-					<td style="width: 40%">Defect Description:</td>
-					<td style="width: 60%"><%= cd.getdefect_Description() %></td>
-				</tr>
-				<tr>
-					<td style="width: 40%">Customer Contact:</td>
-					<td style="width: 60%">Phone: <%= cd.getPhone() %>...EmailId:
-						<%= cd.getEmail() %></td>
-				</tr>
-				<tr>
-					<td style="width: 40%">Customer Address:</td>
-					<td style="width: 60%"><textarea class="form-control"
-							id="address" rows="5" disabled><%= cd.getAddress() %></textarea>
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#myModal">View on map</button></td>
-				</tr>
-				<tr>
-					<td style="width: 40%"></td>
-					<td style="width: 60%">
-				</tr>
-				
-			</table>
-			<%-- <button type="submit" class="btn btn-primary" >Commit</button>
-
-			<%
-				String userid = session.getAttribute("statusId").toString();
-			%>
-			<p>
-				Hello
-				<%=userid%>
-			</p> --%>
-			<%
-				String resp = session.getAttribute("statusId").toString();
-				pageContext.setAttribute("resp", resp);
-			%>
-<%-- 			<p>
-				Test is :
-				<c:out value="${resp}" />
-			</p> --%>
-
-			<c:choose>
-				<c:when test="${resp == 'Assigned to Technician...In Progress'}">
-					<button type="submit" class="btn btn-primary" disabled="disabled">Commit</button>
-				</c:when>
-				<c:when test="${resp == 'Requested'}">
-					<button type="submit" class="btn btn-primary" >Update</button>
-				</c:when>
-				<c:otherwise>
-						<button type="submit" class="btn btn-primary" >Commit</button>
-				</c:otherwise>
-			</c:choose>
-
-		</form>
-
-		<div class="modal" id="myModal">
+       <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
 

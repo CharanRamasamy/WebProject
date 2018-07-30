@@ -79,11 +79,7 @@ public class StoredProcedures {
 			+ "("
 			+ "IN catname varchar(40))"
 			+ "BEGIN "
-<<<<<<< HEAD
 			+ "select defect_id,defect_name,details,flag_status from ServiceRequest where category = catname; "
-=======
-			+ "select defect_name,details,flag_status from ServiceRequest where category = catname; "
->>>>>>> eb9f8e4f06a9bd2338953c61d19b1a8515c0ab5e
 			+ "END;";
 	
 	public String dropDefectidforCid = "DROP PROCEDURE IF EXISTS DefectidforCid";
