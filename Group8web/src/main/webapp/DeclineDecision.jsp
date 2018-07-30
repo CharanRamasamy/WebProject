@@ -3,7 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="main.javafiles.TechnicianHome" %>
-<%@ page import="main.javafiles.CustomerDefect" %>
+<%@ page import="main.javafiles.TechnicianDefect" %>
 <%@ page import="main.javafiles.DefectDetails" %>
 <%@ page import="main.javafiles.utils.DBConnection" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
@@ -32,82 +32,48 @@
 <body>
 <% 
 String defect_name = request.getParameter("defectname");
-String defect_id = request.getParameter("defectid");
-int did = Integer.valueOf(defect_id);
-int tid = 0;
 DefectDetails dd = new DefectDetails();
-CustomerDefect cd = new CustomerDefect();
+TechnicianDefect cd = new TechnicianDefect();
 
-cd = dd.getCustomerandDefect(defect_name);
-HttpSession Session = request.getSession(false); 
-if(Session!=null && session.getAttribute("tid") != null) 
-{
-    tid = (int)session.getAttribute("tid");
-}
-String flag = dd.getTechnicianFlag(did, tid);
-int customer_assigned = dd.getCustomerIdForDefectId(did);
+cd = dd.getTechnicianandDefect(defect_name);
+
+
+
 %>
 
 <div id="header"> </div>
 
 <div class="container centre-form">
-  	<h3>Defect Details</h3>
+  	<h3>Defect Details:</h3>
   	<hr>
  
- <div class="col-md-offset-3 col-md-6 centre-form">
-
- <form name="CommitDefectform" onSubmit="return validateLogin()" method="post" action="commitDefect?defectname=<%= defect_name %>">
-
-  <div class="form-group row">
-    <label for="categoryStatic" class="col-md-6 col-form-label formDisplay"><b>Category</b></label>
-    <div class="col-sm-6 md-6">
-      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="categoryStatic" value=<%= cd.getdefect_Category()%>>
-    </div>
-  </div>
-  
-  <div class="form-group row">
-    <label for="cusNameStatic" class="col-md-6 col-form-label formDisplay"><b>Customer Name</b></label>
-    <div class="col-sm-6 md-6">
-      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="cusNameStatic" value=<%= cd.getFirstName()%>>
-    </div>
-  </div>
-  
-      <div class="form-group row">
-    <label for="categoryStatic" class="col-md-6 col-form-label formDisplay"><b>Customer Name</b></label>
-    <div class="col-sm-6 md-6">
-      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="categoryStatic" value=<%= cd.getdefect_Description()%>>
-    </div>
-  </div>
-  
-    <div class="form-group row">
-    <label for="categoryStatic" class="col-md-6 col-form-label formDisplay"><b>Defect Description</b></label>
-    <div class="col-sm-6 md-6">
-      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="categoryStatic" value=<%= cd.getdefect_Description()%>>
-    </div>
-  </div>
-  
-
+ <form name="CommitDefectform" onSubmit="return validateLogin()" method="post" action="DeclineRequest?defectname=<%= defect_name %>">
 
            <table style="width:100%">
 
              <tr>
                 <td style="width:40%">Category:</td>
                 <td style="width:60%"><%= cd.getdefect_Category() %></td>
+
               </tr>
               <tr>
-                <td style="width:40%">CustomerName:</td>
+                <td style="width:40%">Technician Name:</td>
                 <td style="width:60%"><%= cd.getFirstName() %></td>
               </tr>
               <tr>
                 <td style="width:40%">DefectDescription:</td>
                 <td style="width:60%"><%= cd.getdefect_Description() %></td>
               </tr>
+               <tr>
+                <td style="width:40%">Technician Skills:</td>
+                <td style="width:60%"><%= cd.getSkills() %></td>
+              </tr>
               <tr>
-                <td style="width:40%">Customer Contact:</td>
+                <td style="width:40%">Technician Contact:</td>
                 <td style="width:60%">Phone: <%= cd.getPhone() %>...EmailId: <%= cd.getEmail() %></td>
               </tr>
               <tr >
-                <td style="width:40%">CustomerAddress:</td>
+                <td style="width:40%">Technician Address:</td>
                 <td style="width:60%">
                   <textarea class="form-control" id="address" rows="5" disabled><%= cd.getAddress() %></textarea>
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -120,18 +86,8 @@ int customer_assigned = dd.getCustomerIdForDefectId(did);
               <td style="width:60%">
               </tr>
             </table>
-            <% if(flag==null)
-            {%>
-            <button type="submit" class="btn btn-primary">Commit</button>
-            <%} else if(flag.equals("Requested")){ %>
-            <button type="submit" class="btn btn-primary" disabled>Commit</button>
-            <%} else if(flag.equals("Accepted")){%>
-            <button type="submit" class="btn btn-primary">Update</button>
-            <%} else if(flag.equals("Declined")){ %>
-            <button type="submit" class="btn btn-primary">Commit</button>
-            <%} %>
+            <button type="submit" class="btn btn-primary">Decline</button>
 </form>
-</div>
 
        <div class="modal" id="myModal">
   <div class="modal-dialog">

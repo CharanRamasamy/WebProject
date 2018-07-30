@@ -8,10 +8,21 @@ public class Defects {
     private String defect_Description;
     private String defect_Category;
     private String defect_Status;
+    private int defect_id;
     
     
 
-    public void setDefect_Name(String defect_Name) 
+    public int getDefect_id() {
+    	
+		return defect_id;
+		
+	}
+	public void setDefect_id(int defect_id) {
+		
+		this.defect_id = defect_id;
+		
+	}
+	public void setDefect_Name(String defect_Name) 
     { 
     
         this.defect_Name = defect_Name;

@@ -81,7 +81,7 @@ defectlist = d.getDefectsbyCategory(id);
           
             <td style="width:60%" ><%= defect.getdefect_Description()%></td>
              <td style="width:10%" >
-             <a href="TechnicianDefectDetails.jsp?defectname=<%= defect.getDefect_Name()  %>" class="btn btn-primary">View Details</a>
+             <a href="TechnicianDefectDetails.jsp?defectname=<%= defect.getDefect_Name()  %>&defectid=<%= defect.getDefect_id() %>" class="btn btn-primary">View Details</a>
              </td>
              <td>
              <%if(defect.getdefect_Status().equals("Assigned to Technician...In Progress")){%>

@@ -165,6 +165,15 @@ public class StoredProcedures {
 			+ "UPDATE TechnicianServiceRequests SET flag = msg WHERE defectid = did; "
 			+ "END;";
 	
+    public String dropTechnicianFlag = "DROP PROCEDURE IF EXISTS TechFlag";
+    public String getTechnicianFlag = "CREATE PROCEDURE TechFlag "
+            + "("
+            + "IN did int,"
+            + "IN tid int)"
+            + "BEGIN "
+            + "SELECT flag from TechnicianServiceRequests WHERE defectid=did AND techid=tid; "
+            + "END;";
+
 	
 
 }

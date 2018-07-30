@@ -109,7 +109,60 @@ public class DefectDetails  {
 		return defectlist;
 		}
 	
+	public int getCustomerIdForDefectId(int did) throws SQLException, ClassNotFoundException
+	{
+		int customerid =0;
 	
+		try {
+			conn = dbConnection.getConnection();
+	
+			 stmtDrop = (Statement) conn.createStatement();
+				//Dropping the existing procedure
+				stmtDrop.execute(stp.dropCustomeridforDid);
+				stmt = (Statement) conn.createStatement();
+				//Creating New Procedure
+				stmt.execute(stp.getCustomeridforDid);
+				//Calling the Procedure
+
+				calstat = (CallableStatement) conn.prepareCall("{call CustomeridforDid(?)}");
+				 
+				
+				calstat.setInt(1, did);
+				
+				resultSet = calstat.executeQuery();
+				while(resultSet.next()) {
+					customerid = resultSet.getInt("customer_id");
+				
+				}
+		}
+		catch (SQLException ex ) {
+			ex.printStackTrace();
+			}
+		
+			 finally
+				{
+				 if (conn != null) {
+		                // closes the database connection
+		                try {
+		                    conn.close();
+		                    calstat.close();
+		                    dbConnection.CloseSSHConnection();
+		                } 
+		                catch (SQLException ex) {
+		                    ex.printStackTrace();
+		                }
+		            }
+				 	
+				 	
+				}
+		  conn.close();
+          calstat.close();
+          dbConnection.CloseSSHConnection();
+		
+          return customerid;
+		
+			
+	}
 	
 	
 public ArrayList<Defects> getRequestDefects(int cid) throws SQLException, ClassNotFoundException
@@ -447,4 +500,66 @@ public TechnicianDefect getTechnicianandDefect(String defectname) {
 		return td;
 
 }
+
+public String getTechnicianFlag(int did,int tid) throws SQLException, ClassNotFoundException
+
+{
+    String flag = null;
+    try {
+        int cid = 0;
+        conn = dbConnection.getConnection();
+        
+           
+            stmtDrop = (Statement) conn.createStatement();
+            //Dropping the existing procedure
+            stmtDrop.execute(stp.dropTechnicianFlag);
+            stmt = (Statement) conn.createStatement();
+            //Creating New Procedure
+            stmt.execute(stp.getTechnicianFlag);
+            //Calling the Procedure
+
+            calstat = (CallableStatement) conn.prepareCall("{call TechFlag(?,?)}");
+             
+            
+            
+            calstat.setInt(1, did);
+            calstat.setInt(2, tid);
+            resultSet = calstat.executeQuery();
+        while (resultSet.next()) {
+            flag = resultSet.getString("flag");
+        }
+            
+        
+         
+
+           
+            
+        }
+    catch (SQLException ex ) {
+        ex.printStackTrace();
+        }
+    
+         finally
+            {
+             if (conn != null) {
+                    // closes the database connection
+                    try {
+                        conn.close();
+                        calstat.close();
+                        dbConnection.CloseSSHConnection();
+                    } 
+                    catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                 
+                 
+            }
+      conn.close();
+      calstat.close();
+      dbConnection.CloseSSHConnection();
+    return flag;
+    }
+
+
 }

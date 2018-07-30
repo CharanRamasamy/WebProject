@@ -94,6 +94,7 @@ public ArrayList<Defects> getDefectsbyCategory(int id) throws SQLException, Clas
 				
 				if(flag.equals("Initiated")) {
 				Defects defect = new Defects();
+                defect.setDefect_id(resultSet.getInt("defect_id"));
 				defect.setDefect_Name(resultSet.getString("defect_name"));
 				defect.setdefect_Description(resultSet.getString("details"));
 				defect.setdefect_Status(flag);
@@ -101,6 +102,7 @@ public ArrayList<Defects> getDefectsbyCategory(int id) throws SQLException, Clas
 				}
 				if(id==tech_id&&(flag.equals("Requested")||(flag.contains("Assigned")))) {
 					Defects defect = new Defects();
+					defect.setDefect_id(resultSet.getInt("defect_id"));
 					defect.setDefect_Name(resultSet.getString("defect_name"));
 					defect.setdefect_Description(resultSet.getString("details"));
 					defect.setdefect_Status(flag);

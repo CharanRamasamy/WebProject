@@ -82,7 +82,7 @@ defectlist = d.getRequestDefects(cid);
              <a href="AcceptDecision.jsp?defectname=<%= defect.getDefect_Name() %>" class="btn btn-primary">Accept</a>
              </td>
            	<td style="width:10%" >
-           	<a href="RequestDecision?decision=<%= "decline"  %>" class="btn btn-primary">Decline</a>
+           	<a href="DeclineDecision.jsp?defectname=<%= defect.getDefect_Name() %>" class="btn btn-primary">Decline</a>
            	</td>
             </tr>
         
