@@ -72,6 +72,14 @@ cd = dd.getTechnicianandDefect(defect_name);
                 <td style="width:40%">Technician Contact:</td>
                 <td style="width:60%">Phone: <%= cd.getPhone() %>...EmailId: <%= cd.getEmail() %></td>
               </tr>
+              <tr>
+                <td style="width:40%">Proposed Fees</td>
+                <td style="width:60%"> <%=  cd.getfees() %></td>
+              </tr>
+               <tr>
+                <td style="width:40%">Comments from Technician</td>
+                <td style="width:60%"> <%=  cd.getComments() %></td>
+              </tr>
               <tr >
                 <td style="width:40%">Technician Address:</td>
                 <td style="width:60%">

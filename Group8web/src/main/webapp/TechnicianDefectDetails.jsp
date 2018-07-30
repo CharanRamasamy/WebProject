@@ -47,7 +47,7 @@ cd = dd.getCustomerandDefect(defect_name);
   	<h3>Defect Details:</h3>
   	<hr>
  
- <form name="CommitDefectform" onSubmit="return validateLogin()" method="post" action="commitDefect?defectname=<%= defect_name %>">
+
 
            <table style="width:100%">
 
@@ -82,8 +82,28 @@ cd = dd.getCustomerandDefect(defect_name);
               <td style="width:60%">
               </tr>
             </table>
-            <button type="submit" class="btn btn-primary">Commit</button>
-</form>
+           
+
+
+ <form name="CommitDefectform" method="post" action="commitDefect?defectname=<%= defect_name %>">
+  <div class="control-group form-group">
+              <div class="controls">
+                <label>Proposed Fee</label>
+                <input type="text" class="form-control" placeholder="Fee" name="proposedfee" id="proposedfee">
+              </div>
+            </div>
+ <div class="control-group form-group">
+              <div class="controls">
+                <label>Comments</label>
+                <input type="text" class="form-control" placeholder="Comments" name="Comments" id="Comments">
+              </div>
+            </div>
+            <div class="control-group form-group">
+              <div class="controls">
+  			<button type="submit" class="btn btn-primary">Commit</button>
+  			</div>
+  			</div>
+ </form>
 
        <div class="modal" id="myModal">
   <div class="modal-dialog">

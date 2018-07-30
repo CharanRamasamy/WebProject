@@ -12,8 +12,32 @@ public class TechnicianDefect {
     private String phnumber;
     private String addr;
     private String skills;
+    private String fees;
+    private String comments;
+    
     
 
+    public void setFees(String fees) 
+    { 
+    
+        this.fees = fees;
+        
+    }
+    public String getfees() 
+    { 
+        return (this.fees);
+    }
+    public void setComments(String comments) 
+    { 
+    
+        this.comments = comments;
+        
+    }
+    public String getComments() 
+    { 
+        return (this.comments);
+    }
+    
     public void setSkills(String skills) 
     { 
     
