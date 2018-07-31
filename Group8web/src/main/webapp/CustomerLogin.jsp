@@ -81,6 +81,7 @@
               <div class="controls">
                 <label>First Name:</label>
                 <input type="text" class="form-control" name="fname" id="fname">
+				<span id="errfname" class="alert-copy alert-danger-copy">Firstname should Contain Only Characters</span>
                 <p class="help-block"></p>
               </div>
             </div>
@@ -88,6 +89,7 @@
               <div class="controls">
                 <label>Last Name:</label>
                 <input type="text" class="form-control" name="lname" id="lname">
+				<span id="errlname" class="alert-copy alert-danger-copy">Firstname should contain only characters</span>
                 <p class="help-block"></p>
               </div>
             </div>
@@ -101,6 +103,7 @@
               <div class="controls">
                 <label>Username:</label>
                 <input type="text" class="form-control" name="username" id="username">
+				<span id="errname" class="alert-copy alert-danger-copy">Username should contain only characters</span>
               </div>
             </div>
 			<div class="control-group form-group">
@@ -113,6 +116,7 @@
               <div class="controls">
                 <label>Phone Number:</label>
                 <input type="text" class="form-control" name="phone" id="phone" >
+				<span id="errphone" class="alert-copy alert-danger-copy ">Phone number should contain only digits</span>
               </div>
             </div>
             <div class="control-group form-group">
@@ -125,11 +129,12 @@
               <div class="controls">
                 <label>Postal Code:</label>
                 <input type="text" class="form-control"  name="code"  id="code" >
+				<span id="errcode" class="alert-copy alert-danger-copy">Invalid Postal Code</span>
               </div>
             </div>
             <div id="successnow"></div>
             <!-- For success/fail messages -->
-            <input type="submit" style="width: 100%" class="btn btn-success btn-lg btn-block" value="Register">
+            <input type="submit" style="width: 100%" class="btn btn-success btn-lg btn-block" id="Rbtn" value="Register">
           </form>
         </div>
         </div>
@@ -214,6 +219,15 @@
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
    
+  	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"
+		type="text/javascript"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+		type="text/javascript"></script>
+		<script src="js/jquery-3.1.1.min.js"></script>  
+		<!-- here we are importing the jquery file which is downloaded -->
+		<script src="bootstrap/js/validate.js"></script> 
    
 <script>
   $("#header").load("./header.jsp");
