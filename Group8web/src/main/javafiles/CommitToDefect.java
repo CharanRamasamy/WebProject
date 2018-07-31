@@ -56,7 +56,8 @@ public class CommitToDefect extends HttpServlet {
 		String comments = request.getParameter("Comments");
 		String defect_name = request.getParameter("defectname");
 		
-		String pass = request.getParameter("passvalue");
+		String pass = null;
+		pass = request.getParameter("passv");
         
      
          
@@ -103,7 +104,13 @@ public class CommitToDefect extends HttpServlet {
 		calstat.setInt(1,defectid );
 		
 		calstat.setInt(2,techid );
-		calstat.setString(3, "Requested");
+		if(pass.equals("close")) {
+			calstat.setString(3, "Defect Closed successfully");
+		}
+		else {
+			calstat.setString(3, "Requested");
+		}
+		
 		calstat.setString(4, fee);
 		
 		calstat.setString(5,comments);
@@ -120,11 +127,12 @@ public class CommitToDefect extends HttpServlet {
 		
 		calstat.setInt(1,defectid );
 		
-		if(pass.equals("commit")) {
-		calstat.setString(2, "Requested");
-		}
-		else if(pass.equals("commit")) {
+		
+		if(pass.equals("close")) {
 			calstat.setString(2, "Defect Closed successfully");
+		}
+		else {
+			calstat.setString(2, "Requested");
 		}
 		
 		calstat.execute();

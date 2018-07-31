@@ -99,7 +99,7 @@ int customer_assigned = dd.getCustomerIdForDefectId(did);
 <hr/>
 
 <div class = col-md-6>
- <form name="CommitDefectform" method="post" action="commitDefect?defectname=<%= defect_name %>&passvalue=<%=pass %>">
+ <form name="CommitDefectform" method="post" action="commitDefect?defectname=<%= defect_name %>">
   <% if(flag==null)
             {%>
   <div class="control-group form-group">
@@ -120,12 +120,12 @@ int customer_assigned = dd.getCustomerIdForDefectId(did);
             <button type="submit" class="btn btn-success">Commit</button>
             <%} else if(flag.equals("Requested")){ %>
             <button type="submit" class="btn btn-success" disabled>Commit</button>
-            <%} else if(flag.equals("Assigned")){ pass = "close";%>
+            <%} else if(flag.equals("Assigned")){%>
+             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#closeModal">Close Service Request</button>
             
-            <button type="submit" class="btn btn-primary">Close Service Request</button>
    
             <%} else if(flag.equals("Declined")){
-            	pass = "commit";
+            	
             	%>
              <div class="control-group form-group">
               <div class="controls">
@@ -149,6 +149,38 @@ int customer_assigned = dd.getCustomerIdForDefectId(did);
   			</div>
 
 
+
+    <div class="modal" id="closeModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+<form name="CommitDefectform" method="post" action="commitDefect?defectname=<%= defect_name %>&passv=<%= "close"%>">
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       <div class="control-group form-group">
+              <div class="controls">
+                <label>Are you sure you want to close the request??</label>
+                
+              </div>
+            </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <!-- <input id="submit" type="button" value="View Address">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+         <div class="control-group form-group">
+              <div class="controls">
+            <button type="submit" class="btn btn-primary" >Close Service Request</button>
+             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+            </div>
+            </form>
+      </div>
+
+    </div>
+  </div>
+</div>
 
        <div class="modal" id="myModal">
   <div class="modal-dialog">
