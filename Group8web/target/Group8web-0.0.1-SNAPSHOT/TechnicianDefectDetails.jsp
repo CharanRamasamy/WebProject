@@ -31,53 +31,156 @@
 </head>
 <body>
 <% 
+String pass = "commit";
 String defect_name = request.getParameter("defectname");
+String defect_id = request.getParameter("defectid");
+int did = Integer.valueOf(defect_id);
+int tid = 0;
 DefectDetails dd = new DefectDetails();
 CustomerDefect cd = new CustomerDefect();
 
 cd = dd.getCustomerandDefect(defect_name);
-
-
-
+HttpSession Session = request.getSession(false); 
+if(Session!=null && session.getAttribute("tid") != null) 
+{
+    tid = (int)session.getAttribute("tid");
+}
+String flag = dd.getTechnicianFlag(did, tid);
+int customer_assigned = dd.getCustomerIdForDefectId(did);
 %>
 
 <div id="header"> </div>
 
 <div class="container centre-form">
-  	<h3>Defect Details:</h3>
+  	<h1 class="DefectHeadTitle">Defect Details</h1>
   	<hr>
  
+ <div class="col-md-offset-3 col-md-6 centre-form">
 
-           <table style="width:100%">
-
-             <tr>
-                <td style="width:40%">Category:</td>
-                <td style="width:60%"><%= cd.getdefect_Category() %></td>
-
-              </tr>
-              <tr>
-                <td style="width:40%">CustomerName:</td>
-                <td style="width:60%"><%= cd.getFirstName() %></td>
-              </tr>
-              <tr>
-                <td style="width:40%">DefectDescription:</td>
-                <td style="width:60%"><%= cd.getdefect_Description() %></td>
-              </tr>
-              <tr>
-                <td style="width:40%">Customer Contact:</td>
-                <td style="width:60%">Phone: <%= cd.getPhone() %>...EmailId: <%= cd.getEmail() %></td>
-              </tr>
-              <tr >
-                <td style="width:40%">CustomerAddress:</td>
-                <td style="width:60%">
-                  <textarea class="form-control" id="address" rows="5" disabled><%= cd.getAddress() %></textarea>
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  <div class="form-group row">
+    <label for="categoryStatic" class="col-md-6 col-form-label formDisplay"><b>Category</b></label>
+    <div class="col-sm-6 md-6">
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="categoryStatic" value=<%= cd.getdefect_Category()%>>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="cusNameStatic" class="col-md-6 col-form-label formDisplay"><b>Customer Name</b></label>
+    <div class="col-sm-6 md-6">
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="cusNameStatic" value=<%= cd.getFirstName()%>>
+    </div>
+  </div>
+  
+      <div class="form-group row">
+    <label for="defectDesc" class="col-md-6 col-form-label formDisplay"><b>Defect Description</b></label>
+    <div class="col-sm-6 md-6">
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="defectDesc" value=<%= cd.getdefect_Description()%>>
+    </div>
+  </div>
+  
+    <div class="form-group row">
+    <label for="contactCustomer" class="col-md-6 col-form-label formDisplay"><b>Contact Customer</b></label>
+    <div class="col-sm-6 md-6">
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="contactCustomer" value=<%= cd.getPhone()%>>
+      <input type="text" readonly class="form-control-plaintext formValueDisplay" id="contactCustomer" value=<%= cd.getEmail()%>>
+    </div>
+  </div>
+  
+      <div class="form-group row">
+    <label for="CustomerAddress" class="col-md-6 col-form-label formDisplay"><b>Customer Address</b></label>
+    <div class="col-sm-6 md-6">
+    <textarea class="form-control" id="CustomerAddress" rows="3" disabled><%= cd.getAddress() %></textarea>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
     View on map
   </button>
-                </td>
-              </tr>
-            </table>
+    </div>
+  </div>
+</div>
+<hr/>
 
+<div class = col-md-6>
+ <form name="CommitDefectform" method="post" action="commitDefect?defectname=<%= defect_name %>">
+  <% if(flag==null)
+            {%>
+  <div class="control-group form-group">
+              <div class="controls">
+                <label>Proposed Fee</label>
+                <input type="text" class="form-control" placeholder="Fee" name="proposedfee" id="proposedfee">
+              </div>
+            </div>
+ <div class="control-group form-group">
+              <div class="controls">
+                <label>Comments</label>
+                <input type="text" class="form-control" placeholder="Comments" name="Comments" id="Comments">
+              </div>
+            </div>
+            <div class="control-group form-group">
+              <div class="controls">
+  			
+            <button type="submit" class="btn btn-success">Commit</button>
+            <%} else if(flag.equals("Requested")){ %>
+            <button type="submit" class="btn btn-success" disabled>Commit</button>
+            <%} else if(flag.equals("Assigned")){%>
+             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#closeModal">Close Service Request</button>
+            
+   
+            <%} else if(flag.equals("Declined")){
+            	
+            	%>
+             <div class="control-group form-group">
+              <div class="controls">
+                <label>Proposed Fee</label>
+                <input type="text" class="form-control" placeholder="Fee" name="proposedfee" id="proposedfee">
+              </div>
+            </div>
+ <div class="control-group form-group">
+              <div class="controls">
+                <label>Comments</label>
+                <input type="text" class="form-control" placeholder="Comments" name="Comments" id="Comments">
+              </div>
+            </div>
+            <div class="control-group form-group">
+              <div class="controls">
+            <button type="submit" class="btn btn-primary">Commit</button>
+            <%} %>
+  			</div>
+  			</div>
+ </form>
+  			</div>
+
+
+
+    <div class="modal" id="closeModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+<form name="CommitDefectform" method="post" action="commitDefect?defectname=<%= defect_name %>&passv=<%= "close"%>">
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       <div class="control-group form-group">
+              <div class="controls">
+                <label>Are you sure you want to close the request??</label>
+                
+              </div>
+            </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <!-- <input id="submit" type="button" value="View Address">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+         <div class="control-group form-group">
+              <div class="controls">
+            <button type="submit" class="btn btn-primary" >Close Service Request</button>
+             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+            </div>
+            </form>
+      </div>
+
+    </div>
+  </div>
+</div>
 
        <div class="modal" id="myModal">
   <div class="modal-dialog">
@@ -106,9 +209,6 @@ cd = dd.getCustomerandDefect(defect_name);
     <small class="ml-auto">Resolve with Tech!</small>
 
 </footer>
-
-  
-
   
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

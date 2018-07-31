@@ -42,16 +42,26 @@ if(Session!=null && session.getAttribute("cid") != null)
                 <a class="nav-link" href="Logout">Logout <span class="sr-only">(current)</span></a>
             </li>
 <% } %>
+<%
+if(Session!=null && session.getAttribute("tid") != null) 
+{	
+	String tname=session.getAttribute("tfname").toString();
+%>
+			<li>
+			<a class="nav-link" href="#">Welcome! <%=tname %> <span class="sr-only">(current)</span></a>
+               
+            </li>
+			<li>
+                <a class="nav-link" href="Logout">Logout <span class="sr-only">(current)</span></a>
+            </li>
+<% } %>
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button type="submit">Search</button>
         </form>
-
-
     </div>
     </nav>
-
 </body>
 </html>

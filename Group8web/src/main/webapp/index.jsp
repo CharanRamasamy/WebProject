@@ -104,7 +104,7 @@ if(session.getAttribute("tid") == null){%>
             <img src="./styles/images/Home_Appliances.png" alt="Home_Applicances" style="width: 200px; height: 200px">
         </div>
         </div>
-        <button class="btn btn-md btn-success buttons">Post Defect</button>
+        
     </div>
 
     <div class="col-sm-6 col-xs-12 col-lg-6 col-md-6">

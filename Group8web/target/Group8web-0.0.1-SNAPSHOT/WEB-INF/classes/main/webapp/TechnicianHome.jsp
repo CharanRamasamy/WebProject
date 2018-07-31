@@ -6,6 +6,7 @@
 <%@ page import="main.javafiles.Defects" %>
 <%@ page import="main.javafiles.utils.DBConnection" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,7 +31,7 @@
       <div class="container">
 
       <!-- Page Heading/Breadcrumbs -->
-      <h1 class="mt-4 mb-3">Customer
+      <h1 class="mt-4 mb-3">Technician
         <small>Page</small>
       </h1>
 
@@ -53,15 +54,19 @@
 TechnicianHome d = new TechnicianHome();
 ArrayList<Defects> defectlist = new ArrayList<Defects>();
 HttpSession Session = request.getSession(false); 
-
-defectlist = d.getDefectsbyCategory("Furniture");
+if(Session!=null && session.getAttribute("tid") != null) 
+{	System.out.println(session.getAttribute("tid"));
+    int id = (int)session.getAttribute("tid");
+defectlist = d.getDefectsbyCategory(id);
 
 
 %>
+<% } %>
 <tr>
 <th> Service Request name </th>
          <th>Service Request Details</th>
              <th>View Details</th>
+             <th>Status</th>
 
 </tr>
 
@@ -75,13 +80,20 @@ defectlist = d.getDefectsbyCategory("Furniture");
          <td style="width:20%"><%= defect.getDefect_Name() %></td>
           
             <td style="width:60%" ><%= defect.getdefect_Description()%></td>
-             <td style="width:20%" >
-             <a href="TechnicianDefectDetails.jsp?defectname=<%= defect.getDefect_Name()  %>" class="btn btn-primary">View Details</a>
+             <td style="width:10%" >
+             <a href="TechnicianDefectDetails.jsp?defectname=<%= defect.getDefect_Name()  %>&defectid=<%= defect.getDefect_id() %>" class="btn btn-primary">View Details</a>
              </td>
-           
-            </tr>
-        
-        <%}%>
+             <td>
+             <%if(defect.getdefect_Status().equals("Assigned to Technician...In Progress")){%>
+            	 <td style="width:10%">Assigned to you</td>
+             <% }
+              else if(defect.getdefect_Status().equals("Defect Closed successfully")){%>
+        	 <td style="width:10%"><%= defect.getdefect_Status() %></td>
+         <% }
+             
+             else { %>
+             <td style="width:10%"><%= defect.getdefect_Status() %></td>
+        <%}}%>
         
 </table>
 </div>

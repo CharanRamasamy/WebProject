@@ -46,7 +46,7 @@
 		<h5 class=""><a class="btn btn-warning" href="Customer_PostDefect.jsp">Add New  Defects</a></h5>
 		</div>
            <div class="mb-4">
-               <h5 class=""><a class="btn btn-warning" href="#" >View Request</a></h5>
+               <h5 class=""><a class="btn btn-warning" href="ViewRequest.jsp" >View Request</a></h5>
            </div>
            
              <!-- Blog Post -->

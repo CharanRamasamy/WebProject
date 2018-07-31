@@ -100,7 +100,7 @@ public ArrayList<Defects> getDefectsbyCategory(int id) throws SQLException, Clas
 				defect.setdefect_Status(flag);
 				defectlist.add(defect);
 				}
-				if(id==tech_id&&(flag.equals("Requested")||(flag.contains("Assigned")))) {
+				if(id==tech_id&&(flag.equals("Requested")||(flag.contains("Assigned"))||(flag.contains("Closed")))) {
 					Defects defect = new Defects();
 					defect.setDefect_id(resultSet.getInt("defect_id"));
 					defect.setDefect_Name(resultSet.getString("defect_name"));
