@@ -17,7 +17,7 @@ $("#alertSuccess").hide();
 	$("#errdescription").hide();
 	$("#errmail").hide();
 	$("#errphone").hide();
-	$("#erraddress").hide();
+	$("#errdeadline").hide();
 	
 	$("#Loginbtn").click(function() {
 		var username=$("#lusername").val();
@@ -259,8 +259,8 @@ $("#alertSuccess").hide();
 	});
 	
 	
-	$("#defectname").change(function(){
-		var defectname=$("#defectname").val();
+	$("#defectName").change(function(){
+		var defectname=$("#defectName").val();
 		 var letters = /^[A-Za-z]+$/;
 
 		 if(!(defectname.match(letters))){
@@ -288,5 +288,77 @@ $("#alertSuccess").hide();
 			}
 		
 	});
+	
+	
+	$("#Rbtn").click(function(){
+		var deadlinedate=$("#deadline").val();
+		 var letters = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/;
+
+		 if(!(deadlinedate.match(letters))){
+			 $("#errdeadline").show();
+
+			 return false;
+			}else{
+				$("#errdeadline").hide();
+				return true;
+			}
+		
+	});
+	
+	
+	
+	$('#Rbtn').click( function(){
+        var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+        var Val_date=$('#deadline').val();
+            if(Val_date.match(dateformat)){
+           var seperator1 = Val_date.split('/');
+           var seperator2 = Val_date.split('-');
+
+           if (seperator1.length>1)
+           {
+               var splitdate = Val_date.split('/');
+           }
+           else if (seperator2.length>1)
+           {
+               var splitdate = Val_date.split('-');
+           }
+           var dd = parseInt(splitdate[0]);
+           var mm  = parseInt(splitdate[1]);
+           var yy = parseInt(splitdate[2]);
+           var ListofDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+           if (mm==1 || mm>2)
+           {
+               if (dd>ListofDays[mm-1])
+               {
+                   alert('Invalid date format!');
+                   return false;
+               }
+           }
+           if (mm==2)
+           {
+               var lyear = false;
+               if ( (!(yy % 4) && yy % 100) || !(yy % 400))
+               {
+                   lyear = true;
+               }
+               if ((lyear==false) && (dd>=29))
+               {
+                   alert('Invalid date format!');
+                   return false;
+               }
+               if ((lyear==true) && (dd>29))
+               {
+                   alert('Invalid date format!');
+                   return false;
+               }
+           }
+       }
+       else
+       {
+           alert("Invalid date format!");
+
+           return false;
+       }
+    });
 	
 });
