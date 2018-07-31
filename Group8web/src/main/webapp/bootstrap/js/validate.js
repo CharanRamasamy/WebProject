@@ -11,7 +11,14 @@ $("#alertSuccess").hide();
 	$("#errskills").hide();
 	$("#erraddress").hide();
 	$("#errcode").hide();
-
+	
+	//post defect error message
+	$("#errdefectname").hide();
+	$("#errdescription").hide();
+	$("#errmail").hide();
+	$("#errphone").hide();
+	$("#erraddress").hide();
+	
 	$("#Loginbtn").click(function() {
 		var username=$("#lusername").val();
 		var password=$("#lpassword").val(); //triggers on click of register
@@ -29,6 +36,36 @@ $("#alertSuccess").hide();
 		}
 	});
 	
+	
+	$("#PostDefectbtn").click(function() {
+		var defectname=$("#defectName").val();
+		var category=$("#category").val(); 
+		var photo=$("#photo").val();
+		var description=$("#description").val(); 
+		var deadline=$("#deadline").val(); 
+		
+		if(defectname==null || defectname==""){
+			alert("Defect name cannot be empty");
+			return false;
+		}else if(category=="--Select--" || category==null){
+			alert("Please select defect category");
+			return false;			
+		}else if(photo=="" || photo==null){
+			alert("Defect photo cannot be empty");
+			return false;			
+		}else if(description=="" || description==null){
+			alert("Defect description cannot be empty");
+			return false;			
+		}else if(deadline=="" || deadline==null){
+			alert("Defect deadline cannot be empty");
+			return false;			
+		}else{
+			$("#alertSuccess").show();
+			$("#formid").submit();
+			return true;
+		}
+	  });
+	
 	$("#Rbtn").click(function() {
 		var userid=$("#id").val();
 		var username=$("#username").val();
@@ -41,8 +78,14 @@ $("#alertSuccess").hide();
 		var code=$("#code");	
 		var email=$("#email").val();
 		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-		 var letters = /^[A-Za-z]+$/;
-
+		var letters = /^[A-Za-z]+$/;
+		//post defect variables
+		var defectname=$("#defectname");
+		var category=$("#category");
+		var photo=$("#photo");
+		var description=$("#description");
+		var deadline=$("#deadline");
+		
 	 if(username==null || username==""){
 			alert("UserName cannot be Empty");
 			return false;
@@ -215,5 +258,35 @@ $("#alertSuccess").hide();
 		
 	});
 	
+	
+	$("#defectname").change(function(){
+		var defectname=$("#defectname").val();
+		 var letters = /^[A-Za-z]+$/;
+
+		 if(!(defectname.match(letters))){
+			 $("#errdefectname").show();
+
+			 return false;
+			}else{
+				$("#errdefectname").hide();
+				return true;
+			}
+		
+	});
+	
+	$("#description").change(function(){
+		var defectname=$("#description").val();
+		 var letters = /^[A-Za-z]+$/;
+
+		 if(!(defectname.match(letters))){
+			 $("#errdescription").show();
+
+			 return false;
+			}else{
+				$("#errdescription").hide();
+				return true;
+			}
+		
+	});
 	
 });
