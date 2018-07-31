@@ -31,6 +31,7 @@
 </head>
 <body>
 <% 
+String pass = "commit";
 String defect_name = request.getParameter("defectname");
 String defect_id = request.getParameter("defectid");
 int did = Integer.valueOf(defect_id);
@@ -98,7 +99,7 @@ int customer_assigned = dd.getCustomerIdForDefectId(did);
 <hr/>
 
 <div class = col-md-6>
- <form name="CommitDefectform" method="post" action="commitDefect?defectname=<%= defect_name %>">
+ <form name="CommitDefectform" method="post" action="commitDefect?defectname=<%= defect_name %>&passvalue=<%=pass %>">
   <% if(flag==null)
             {%>
   <div class="control-group form-group">
@@ -119,9 +120,13 @@ int customer_assigned = dd.getCustomerIdForDefectId(did);
             <button type="submit" class="btn btn-success">Commit</button>
             <%} else if(flag.equals("Requested")){ %>
             <button type="submit" class="btn btn-success" disabled>Commit</button>
-            <%} else if(flag.equals("Assigned")){%>
-            <button type="submit" class="btn btn-primary btn-block">Close Defect</button>
-            <%} else if(flag.equals("Declined")){ %>
+            <%} else if(flag.equals("Assigned")){ pass = "close";%>
+            
+            <button type="submit" class="btn btn-primary">Close Service Request</button>
+   
+            <%} else if(flag.equals("Declined")){
+            	pass = "commit";
+            	%>
              <div class="control-group form-group">
               <div class="controls">
                 <label>Proposed Fee</label>

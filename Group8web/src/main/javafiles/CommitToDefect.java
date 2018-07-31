@@ -56,7 +56,7 @@ public class CommitToDefect extends HttpServlet {
 		String comments = request.getParameter("Comments");
 		String defect_name = request.getParameter("defectname");
 		
-	
+		String pass = request.getParameter("passvalue");
         
      
          
@@ -120,8 +120,13 @@ public class CommitToDefect extends HttpServlet {
 		
 		calstat.setInt(1,defectid );
 		
-		
+		if(pass.equals("commit")) {
 		calstat.setString(2, "Requested");
+		}
+		else if(pass.equals("commit")) {
+			calstat.setString(2, "Defect Closed successfully");
+		}
+		
 		calstat.execute();
 		
 			

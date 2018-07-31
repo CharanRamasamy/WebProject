@@ -86,7 +86,12 @@ defectlist = d.getDefectsbyCategory(id);
              <td>
              <%if(defect.getdefect_Status().equals("Assigned to Technician...In Progress")){%>
             	 <td style="width:10%">Assigned to you</td>
-             <% } else { %>
+             <% }
+              else if(defect.getdefect_Status().equals("Defect Closed successfully")){%>
+        	 <td style="width:10%"><%= defect.getdefect_Status() %></td>
+         <% }
+             
+             else { %>
              <td style="width:10%"><%= defect.getdefect_Status() %></td>
         <%}}%>
         
