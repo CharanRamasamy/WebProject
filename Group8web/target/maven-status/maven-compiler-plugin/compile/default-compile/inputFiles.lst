@@ -1,3 +1,4 @@
+/home/priyanka/WebProject/Group8web/src/main/javafiles/SearchPage.java
 /home/priyanka/WebProject/Group8web/src/main/javafiles/CustomerDetails.java
 /home/priyanka/WebProject/Group8web/src/main/javafiles/TechnicianHome.java
 /home/priyanka/WebProject/Group8web/src/main/javafiles/LoginTechnician.java
@@ -8,6 +9,7 @@
 /home/priyanka/WebProject/Group8web/src/main/javafiles/LoginCustomer.java
 /home/priyanka/WebProject/Group8web/src/main/javafiles/CommitToDefect.java
 /home/priyanka/WebProject/Group8web/src/main/javafiles/utils/DBConnection.java
+/home/priyanka/WebProject/Group8web/src/main/javafiles/SearchDetails.java
 /home/priyanka/WebProject/Group8web/src/main/javafiles/PostDefect.java
 /home/priyanka/WebProject/Group8web/src/main/javafiles/TechnicianDefect.java
 /home/priyanka/WebProject/Group8web/src/main/javafiles/CustomerDefect.java

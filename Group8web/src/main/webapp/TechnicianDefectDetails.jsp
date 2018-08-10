@@ -99,7 +99,7 @@ int customer_assigned = dd.getCustomerIdForDefectId(did);
 <hr/>
 
 <div class = col-md-6>
- <form name="CommitDefectform" method="post" action="commitDefect?defectname=<%= defect_name %>">
+ <form name="CommitDefectform" method="post" action="commitDefect?defectname=<%= defect_name %>&passv=<%= "commit"%>">
   <% if(flag==null)
             {%>
   <div class="control-group form-group">

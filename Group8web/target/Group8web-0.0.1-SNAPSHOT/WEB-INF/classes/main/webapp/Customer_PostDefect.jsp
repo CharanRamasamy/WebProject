@@ -97,6 +97,8 @@ customer = c.getCustomer(cid);
                 <div class="form-group">
                     <label>Defect Name*</label>
                     <input type="text" class="form-control" name="defectName" id="defectName" placeholder="Name of Defect">
+					
+					<p class="help-block"></p>
                 </div>
                 <div class="form-group">
                     <label>Select Category*</label>
@@ -116,14 +118,17 @@ customer = c.getCustomer(cid);
                 <div class="form-group">
                     <label>Defect Description*</label>
                     <textarea class="form-control" name="description" id="description" rows="3" placeholder="Description of the Problem"></textarea>
+					
                 </div>
                  <div class="form-group">
                     <label >Deadline to fix the Defect*</label>
-                     <input type="date" name="deadline">
+                     <input type="date" name="deadline" id="deadline">
+					<span id="errdeadline" class="alert-copy alert-danger-copy">Please enter a valid date</span>
+					<p class="help-block"></p>
                 </div>
                 
                 <div class="text-center mt-4">
-                    <button class="btn btn-primary" type="submit">SUBMIT</button>
+                    <button class="btn btn-primary" type="submit" id="PostDefectbtn">SUBMIT</button>
                 </div>
             </form>
                 </div>
@@ -208,7 +213,15 @@ customer = c.getCustomer(cid);
 
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5D8iYnTzWIxabHI-5NDOY77KrCkQEVsU&callback=myMap"></script>
-  
+    	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"
+		type="text/javascript"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+		type="text/javascript"></script>
+		<script src="js/jquery-3.1.1.min.js"></script>  
+		<!-- here we are importing the jquery file which is downloaded -->
+		<script src="bootstrap/js/validate.js"></script> 
   <script>
   $("#header").load("./header.jsp");
 </script>

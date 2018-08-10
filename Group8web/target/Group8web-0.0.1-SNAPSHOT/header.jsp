@@ -57,11 +57,37 @@ if(Session!=null && session.getAttribute("tid") != null)
 <% } %>
 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form name="search_form" class="form-inline my-2 my-lg-0" onSubmit="return validateSearchForm()" method="post" action="searchtech">
+             <div class="control-group form-group">
+            <div class="controls">
+             
+                     
+                        <select name="category" id="category" class="control-group form-group">
+                            <option>--Search Technicians in following categories--</option>
+                            <option>Electronics</option>
+                            <option>Furniture</option>
+                            <option>Home Appliance</option>
+                            <option>Auto Mobile</option>
+                        </select>
+                         </div>
+            </div>
+                       
             <button type="submit">Search</button>
         </form>
     </div>
     </nav>
+    
+    <script>
+  function validateSearchForm() {
+	  var v = document.forms["search_form"]["category"].value;
+	    if (v == "--Search Technicians in following categories--") {
+	        alert("Please enter the valid catgory for viewing technicians");
+	        return false;
+	    }
+    
+    }
+     
+  
+  </script>
 </body>
 </html>

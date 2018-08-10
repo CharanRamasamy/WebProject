@@ -258,21 +258,7 @@ $("#alertSuccess").hide();
 		
 	});
 	
-	
-	$("#defectName").change(function(){
-		var defectname=$("#defectName").val();
-		 var letters = /^[A-Za-z]+$/;
 
-		 if(!(defectname.match(letters))){
-			 $("#errdefectname").show();
-
-			 return false;
-			}else{
-				$("#errdefectname").hide();
-				return true;
-			}
-		
-	});
 	
 	$("#description").change(function(){
 		var defectname=$("#description").val();

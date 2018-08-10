@@ -56,7 +56,7 @@ public class CommitToDefect extends HttpServlet {
 		String comments = request.getParameter("Comments");
 		String defect_name = request.getParameter("defectname");
 		
-		String pass = "";
+		String pass = "ss";
 		pass = request.getParameter("passv");
         
      

@@ -97,7 +97,7 @@ customer = c.getCustomer(cid);
                 <div class="form-group">
                     <label>Defect Name*</label>
                     <input type="text" class="form-control" name="defectName" id="defectName" placeholder="Name of Defect">
-					<span id="errdefectname" class="alert-copy alert-danger-copy">Defect name should contain only characters</span>
+					
 					<p class="help-block"></p>
                 </div>
                 <div class="form-group">
@@ -118,7 +118,7 @@ customer = c.getCustomer(cid);
                 <div class="form-group">
                     <label>Defect Description*</label>
                     <textarea class="form-control" name="description" id="description" rows="3" placeholder="Description of the Problem"></textarea>
-					<span id="errdescription" class="alert-copy alert-danger-copy">Defect description should contain only characters</span>
+					
                 </div>
                  <div class="form-group">
                     <label >Deadline to fix the Defect*</label>

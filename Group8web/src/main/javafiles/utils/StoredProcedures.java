@@ -58,6 +58,14 @@ public class StoredProcedures {
 			+ "select firstname,lastname,emailid,phnumber,addr from Customer where customer_id = cid; "
 			+ "END;";
 	
+	public String dropTechbycategory = "DROP PROCEDURE IF EXISTS Techbycategory";
+	public String getTechbycategory = "CREATE PROCEDURE Techbycategory "
+			+ "("
+			+ "IN catname varchar(40))"
+			+ "BEGIN "
+			+ "select f_name,last_name,email_id,phone_num,skills,categories from Technician where categories = catname; "
+			+ "END;";
+	
 	public String dropTechnicianDetails = "DROP PROCEDURE IF EXISTS TechnicianDetails";
 	public String getTechnicianDetailsbytid = "CREATE PROCEDURE TechnicianDetails "
 			+ "("
@@ -79,7 +87,7 @@ public class StoredProcedures {
 			+ "("
 			+ "IN catname varchar(40))"
 			+ "BEGIN "
-			+ "select defect_id,defect_name,details,flag_status from ServiceRequest where category = catname; "
+			+ "select defect_id,defect_name,details,flag_status,category from ServiceRequest where category = catname; "
 			+ "END;";
 	
 	public String dropDefectidforCid = "DROP PROCEDURE IF EXISTS DefectidforCid";
