@@ -155,7 +155,7 @@
               <div class="controls">
                 <label>Postal Code:</label>
                 <input type="text" class="form-control"  name="code"  id="code" >
-				<span id="errcode" class="alert-copy alert-danger-copy">Invalid Postal Code</span>
+			
               </div>
             </div>
          

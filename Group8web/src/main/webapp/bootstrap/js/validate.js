@@ -244,19 +244,7 @@ $("#alertSuccess").hide();
 		
 	});
 	
-	$("#code").change(function(){
-		var postalcode=$("#code").val();
-		 var regex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
-		 if(!(postalcode.match(regex))){
-			 $("#errcode").show();
 
-			 return false;
-			}else{
-				$("#errcode").hide();
-				return true;
-			}
-		
-	});
 	
 
 	
